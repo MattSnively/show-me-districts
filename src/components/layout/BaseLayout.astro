@@ -30,13 +30,13 @@ const {
 const currentPath = new URL(Astro.request.url).pathname;
 
 /** Build the canonical URL for this page */
-const canonicalUrl = new URL(currentPath, Astro.site || 'https://show-me-districts.pages.dev').href;
+const canonicalUrl = new URL(currentPath, Astro.site || 'https://show-me-districts.com').href;
 
 /** Full title for meta tags */
 const fullTitle = `${title} | Show-Me Districts`;
 
 /** Resolve OG image to absolute URL for social crawlers */
-const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site || 'https://show-me-districts.pages.dev').href;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site || 'https://show-me-districts.com').href;
 ---
 
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Show-Me Districts",
-      "url": "https://show-me-districts.pages.dev",
+      "url": "https://show-me-districts.com",
       "description": "Explore Missouri's congressional districts — past, present, and what they could look like. Open-source redistricting tools for civic engagement.",
       "publisher": {
         "@type": "Organization",

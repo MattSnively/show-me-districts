@@ -8,8 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  /** Replace with actual production URL before launch */
-  site: 'https://show-me-districts.pages.dev',
+  site: 'https://show-me-districts.com',
 
   integrations: [svelte(), sitemap()],
 
