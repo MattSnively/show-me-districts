@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background: navy -->
+  <rect width="1200" height="630" fill="#003B6F"/>
+
+  <!-- Gold accent bar at top -->
+  <rect width="1200" height="8" fill="#D4A843"/>
+
+  <!-- Missouri outline (simplified) — centered -->
+  <g transform="translate(600,280) scale(3.5)" fill="none" stroke="#D4A843" stroke-width="1.5" opacity="0.25">
+    <path d="M-50,-40 L50,-42 L55,-30 L48,-15 L52,5 L45,20 L50,40 L30,42 L10,35 L-15,42 L-35,38 L-50,40 L-52,20 L-45,0 L-48,-20 Z"/>
+    <!-- District dividing lines -->
+    <line x1="-20" y1="-42" x2="-15" y2="42" stroke-width="0.8"/>
+    <line x1="15" y1="-42" x2="20" y2="42" stroke-width="0.8"/>
+    <line x1="-50" y1="0" x2="55" y2="-5" stroke-width="0.8"/>
+  </g>
+
+  <!-- Title text -->
+  <text x="600" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">
+    SHOW-ME
+  </text>
+  <text x="600" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#D4A843" text-anchor="middle">
+    DISTRICTS
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="white" opacity="0.7" text-anchor="middle">
+    Missouri's congressional districts — past, present, and reimagined
+  </text>
+
+  <!-- Bottom info bar -->
+  <rect y="560" width="1200" height="70" fill="#002A4F"/>
+  <text x="600" y="600" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="white" opacity="0.5" text-anchor="middle">
+    Open-source civic redistricting tools  |  show-me-districts.pages.dev
+  </text>
+</svg>

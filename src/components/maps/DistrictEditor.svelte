@@ -482,8 +482,11 @@
       <!-- Eraser tool -->
       <button
         class="w-full mb-2 px-3 py-2 rounded text-sm text-left flex items-center gap-2 transition-colors
+               focus:outline-none focus:ring-2 focus:ring-mo-navy
                {activeDistrict === 0 ? 'bg-gray-200 ring-2 ring-gray-400 font-semibold' : 'hover:bg-gray-100'}"
         onclick={() => activeDistrict = 0}
+        aria-label="Eraser tool — unassign tracts"
+        aria-pressed={activeDistrict === 0}
       >
         <div class="w-5 h-5 rounded border-2 border-dashed border-gray-400 bg-white"></div>
         <span class="text-gray-600">Eraser (unassign)</span>
@@ -497,7 +500,10 @@
         {@const devAbs = Math.abs(dev)}
         <button
           class="w-full mb-1 px-3 py-2 rounded text-sm text-left transition-colors
+                 focus:outline-none focus:ring-2 focus:ring-mo-navy
                  {activeDistrict === distNum ? 'ring-2 ring-offset-1 font-semibold' : 'hover:bg-gray-50'}"
+          aria-label="District {distNum}: {pop > 0 ? pop.toLocaleString() + ' people, ' + dev.toFixed(1) + '% deviation' : 'no tracts assigned'}"
+          aria-pressed={activeDistrict === distNum}
           style="
             {activeDistrict === distNum ? `ring-color: ${DISTRICT_COLORS[i]}; background-color: ${DISTRICT_COLORS[i]}15;` : ''}
           "
@@ -614,7 +620,12 @@
   </div>
 
   <!-- Map area -->
-  <div class="flex-1 relative order-1 md:order-2 min-h-[350px]" bind:this={mapContainer}>
+  <div
+    class="flex-1 relative order-1 md:order-2 min-h-[350px]"
+    bind:this={mapContainer}
+    role="application"
+    aria-label="Interactive district drawing map. Select a district from the sidebar, then click or drag on the map to assign census tracts."
+  >
     <!-- Loading overlay -->
     {#if isLoading}
       <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
@@ -640,7 +651,7 @@
         <span>Current districts</span>
       </div>
       <div class="text-[10px] text-gray-400">
-        {isPainting ? 'Painting...' : 'Click or drag to paint'}
+        {isPainting ? 'Painting...' : 'Click or tap tracts to paint'}
       </div>
     </div>
   </div>

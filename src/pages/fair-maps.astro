@@ -3,10 +3,11 @@
  * Fair Maps Page — Feature 3: Browse and compare pre-computed fair district plans.
  * Hosts the FairMapViewer Svelte island for side-by-side comparison with
  * metric scoring (compactness, population deviation, efficiency gap, etc.).
- * Actual viewer component will be built in Phase 4.
+ * Shows the current enacted map as baseline and community plans when available.
  */
 
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import FairMapViewer from '../components/maps/FairMapViewer.svelte';
 ---
 
 <BaseLayout
@@ -24,15 +25,11 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Viewer container — Svelte island will mount here in Phase 4 -->
+  <!-- Viewer container — FairMapViewer Svelte island -->
   <section class="container-site py-8">
     <div class="rounded-lg border border-mo-neutral-200 bg-white shadow-sm overflow-hidden">
-      {/* Placeholder for FairMapViewer.svelte (client:load) */}
-      <div class="h-[500px] md:h-[650px] flex items-center justify-center bg-mo-neutral-100">
-        <div class="text-center text-mo-neutral-600">
-          <p class="text-lg font-semibold mb-2">Fair Map Viewer</p>
-          <p class="text-sm">Side-by-side comparison tool — coming in Phase 4</p>
-        </div>
+      <div class="h-[550px] md:h-[700px]">
+        <FairMapViewer client:load />
       </div>
     </div>
 
@@ -41,36 +38,75 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
       <h2 class="font-headline text-xl font-bold text-mo-neutral-800 mb-4">
         How We Measure Fairness
       </h2>
+      <p class="text-sm text-mo-neutral-600 mb-6 max-w-3xl">
+        No single metric captures "fairness" perfectly. Redistricting scholars recommend
+        evaluating plans across multiple dimensions. Here are the metrics we use, each
+        measuring a different aspect of what makes a district map fair.
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="p-5 rounded-lg bg-mo-neutral-100">
           <h3 class="font-bold text-mo-neutral-800 mb-1">Polsby-Popper Compactness</h3>
-          <p class="text-sm text-mo-neutral-600">
-            Measures how close a district is to a circle. Higher scores mean more compact,
-            less gerrymandered shapes. Range: 0 to 1.
+          <p class="text-sm text-mo-neutral-600 leading-relaxed">
+            Measures how close a district's shape is to a circle using the formula
+            4&pi; &times; Area / Perimeter&sup2;. Scores range from 0 (highly irregular)
+            to 1 (perfect circle). Higher scores indicate more compact, less gerrymandered
+            shapes. Most real districts score between 0.15 and 0.45.
+          </p>
+        </div>
+        <div class="p-5 rounded-lg bg-mo-neutral-100">
+          <h3 class="font-bold text-mo-neutral-800 mb-1">Reock Compactness</h3>
+          <p class="text-sm text-mo-neutral-600 leading-relaxed">
+            Compares a district's area to the area of its minimum bounding circle.
+            A district that fills most of its bounding circle scores higher.
+            This metric penalizes elongated or tentacle-shaped districts
+            more than Polsby-Popper does.
           </p>
         </div>
         <div class="p-5 rounded-lg bg-mo-neutral-100">
           <h3 class="font-bold text-mo-neutral-800 mb-1">Population Deviation</h3>
-          <p class="text-sm text-mo-neutral-600">
-            How far each district's population strays from the ideal (total / 8).
-            Federal law requires districts be as equal as practicable.
+          <p class="text-sm text-mo-neutral-600 leading-relaxed">
+            Measures how far each district's population strays from the ideal
+            (total population / number of districts). The U.S. Supreme Court requires
+            congressional districts to be as equal in population as practicable.
+            Deviations under 1% are generally considered acceptable.
           </p>
         </div>
         <div class="p-5 rounded-lg bg-mo-neutral-100">
           <h3 class="font-bold text-mo-neutral-800 mb-1">Efficiency Gap</h3>
-          <p class="text-sm text-mo-neutral-600">
-            Compares "wasted votes" between parties across all districts.
-            A large gap suggests one party's votes are being systematically diluted.
+          <p class="text-sm text-mo-neutral-600 leading-relaxed">
+            Compares "wasted votes" between parties — votes cast for losing candidates
+            and votes for winners beyond the 50%+1 needed to win. A large gap suggests
+            one party's votes are systematically diluted. Proposed by legal scholars as
+            a judicially manageable standard. Values over 8% are often flagged.
           </p>
         </div>
-        <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <div class="p-5 rounded-lg bg-mo-neutral-100 md:col-span-2">
           <h3 class="font-bold text-mo-neutral-800 mb-1">Mean-Median Difference</h3>
-          <p class="text-sm text-mo-neutral-600">
-            Compares the mean and median vote share across districts.
-            A skewed mean-median gap can indicate partisan gerrymandering.
+          <p class="text-sm text-mo-neutral-600 leading-relaxed">
+            Compares the mean and median party vote share across all districts. In a
+            symmetric distribution, these should be roughly equal. A positive mean-median
+            gap for one party suggests their voters are "packed" into fewer districts,
+            while the opposing party's voters are spread more efficiently. Values over 2-5%
+            warrant closer scrutiny.
           </p>
         </div>
       </div>
+    </div>
+
+    <!-- Methodology note -->
+    <div class="mt-8 p-5 rounded-lg bg-mo-neutral-100">
+      <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">About These Comparisons</h3>
+      <p class="text-sm text-mo-neutral-600 leading-relaxed">
+        The baseline map is Missouri's current enacted congressional district plan, drawn by
+        the Missouri General Assembly following the 2020 Census. Community plans are sourced
+        from public redistricting tools like Dave's Redistricting App and are scored using the
+        same metrics for apples-to-apples comparison.
+      </p>
+      <p class="text-sm text-mo-neutral-600 leading-relaxed mt-2">
+        <strong>Important:</strong> No metric is definitive proof of gerrymandering. Geographic
+        constraints, the Voting Rights Act, and communities of interest all legitimately
+        affect district shapes. These metrics are tools for informed discussion, not verdicts.
+      </p>
     </div>
   </section>
 </BaseLayout>

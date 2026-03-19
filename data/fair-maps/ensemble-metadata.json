@@ -8,8 +8,8 @@
     "districts": 8,
     "geoFile": "../census/mo-cd-current.geojson",
     "metrics": {
-      "polsbyPopper": null,
-      "reock": null,
+      "polsbyPopper": 0.309,
+      "reock": 0.341,
       "populationDeviation": null,
       "efficiencyGap": null,
       "meanMedian": null

@@ -51,8 +51,23 @@
   let map: maplibregl.Map | null = null;
   let popup: maplibregl.Popup | null = null;
 
-  /** Cache of loaded GeoJSON to avoid re-fetching */
+  /**
+   * Cache of loaded GeoJSON to avoid re-fetching.
+   * Evicts oldest entries when cache exceeds MAX_CACHE_SIZE to prevent memory bloat
+   * (each congress GeoJSON is ~100-200KB, 10 entries ≈ 1-2MB max).
+   */
+  const MAX_CACHE_SIZE = 10;
   const geoCache = new Map<number, any>();
+
+  /** Inserts into cache with LRU eviction when at capacity */
+  function cacheSet(key: number, value: any) {
+    if (geoCache.has(key)) geoCache.delete(key); // Move to end (most recent)
+    geoCache.set(key, value);
+    if (geoCache.size > MAX_CACHE_SIZE) {
+      const oldest = geoCache.keys().next().value;
+      geoCache.delete(oldest);
+    }
+  }
 
   /**
    * Converts a congress number to its approximate year range string.
@@ -91,7 +106,7 @@
     }
 
     const geojson = await response.json();
-    geoCache.set(congressNum, geojson);
+    cacheSet(congressNum, geojson);
     return geojson;
   }
 
@@ -365,7 +380,12 @@
 <div class="relative w-full h-full flex flex-col">
 
   <!-- Map canvas -->
-  <div class="flex-1 relative" bind:this={mapContainer}>
+  <div
+    class="flex-1 relative"
+    bind:this={mapContainer}
+    role="application"
+    aria-label="Interactive map of Missouri congressional districts. Use the timeline slider below to explore different eras."
+  >
     <!-- Loading overlay -->
     {#if isLoading}
       <div class="absolute inset-0 bg-white/50 flex items-center justify-center z-20">
@@ -443,6 +463,7 @@
           type="checkbox"
           bind:checked={showElections}
           class="accent-mo-navy"
+          aria-label="Toggle election result coloring on district map"
         />
         Show election results
       </label>

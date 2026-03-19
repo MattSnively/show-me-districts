@@ -23,11 +23,20 @@ interface Props {
 const {
   title,
   description = 'Explore Missouri\'s congressional districts — past, present, and what they could look like. Open-source redistricting tools for civic engagement.',
-  ogImage = '/og-default.png',
+  ogImage = '/og-default.svg',
 } = Astro.props;
 
 /** Resolve the current page path for active nav highlighting */
 const currentPath = new URL(Astro.request.url).pathname;
+
+/** Build the canonical URL for this page */
+const canonicalUrl = new URL(currentPath, Astro.site || 'https://show-me-districts.pages.dev').href;
+
+/** Full title for meta tags */
+const fullTitle = `${title} | Show-Me Districts`;
+
+/** Resolve OG image to absolute URL for social crawlers */
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site || 'https://show-me-districts.pages.dev').href;
 ---
 
 <!DOCTYPE html>
@@ -35,32 +44,65 @@ const currentPath = new URL(Astro.request.url).pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | Show-Me Districts</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
 
+    <!-- Canonical URL — prevents duplicate content issues -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Theme color for mobile browser chrome -->
+    <meta name="theme-color" content="#003B6F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | Show-Me Districts`} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Show-Me Districts" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | Show-Me Districts`} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- JSON-LD structured data for search engines -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Show-Me Districts",
+      "url": "https://show-me-districts.pages.dev",
+      "description": "Explore Missouri's congressional districts — past, present, and what they could look like. Open-source redistricting tools for civic engagement.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Show-Me Districts",
+      },
+    })} />
   </head>
 
   <body class="min-h-screen flex flex-col">
+    <!-- Skip to main content link for keyboard/screen reader users -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50
+             focus:bg-mo-navy focus:text-white focus:px-4 focus:py-2 focus:rounded focus:text-sm"
+    >
+      Skip to main content
+    </a>
+
     <!-- Site header with logo and navigation -->
     <Navigation currentPath={currentPath} />
 
     <!-- Page content injected by child pages -->
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
 
