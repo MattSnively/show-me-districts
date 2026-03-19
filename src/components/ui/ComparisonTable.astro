@@ -1,0 +1,47 @@
+---
+/**
+ * ComparisonTable — Side-by-side metric comparison for two district plans.
+ * Renders a table with metric names in the first column and each plan's
+ * scores in subsequent columns. Used on the Fair Maps page.
+ *
+ * Props:
+ *   planA     — First plan name
+ *   planB     — Second plan name
+ *   metrics   — Array of { label, valueA, valueB } metric rows
+ */
+
+interface MetricRow {
+  label: string;
+  valueA: string;
+  valueB: string;
+}
+
+interface Props {
+  planA: string;
+  planB: string;
+  metrics: MetricRow[];
+}
+
+const { planA, planB, metrics } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-sm border-collapse">
+    <thead>
+      <tr class="border-b-2 border-mo-neutral-200">
+        <th class="py-3 pr-4 text-left text-mo-neutral-800 font-semibold">Metric</th>
+        <th class="py-3 px-4 text-right text-mo-navy font-semibold">{planA}</th>
+        <th class="py-3 pl-4 text-right text-mo-gold font-semibold">{planB}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {metrics.map((row) => (
+        <tr class="border-b border-mo-neutral-200">
+          <td class="py-2 pr-4 text-mo-neutral-600">{row.label}</td>
+          <td class="py-2 px-4 text-right font-mono text-mo-neutral-800">{row.valueA}</td>
+          <td class="py-2 pl-4 text-right font-mono text-mo-neutral-800">{row.valueB}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

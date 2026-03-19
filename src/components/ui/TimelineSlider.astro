@@ -1,0 +1,37 @@
+---
+/**
+ * TimelineSlider — Astro component for browsing historical congress numbers.
+ * Used on the History page. Renders a range input that snaps to congress numbers.
+ * The Svelte HistoricalMap listens for change events on this element.
+ *
+ * Props:
+ *   minCongress — Earliest congress to show (default: 17, Missouri's first in 1821)
+ *   maxCongress — Latest congress to show (default: 118)
+ */
+
+interface Props {
+  minCongress?: number;
+  maxCongress?: number;
+}
+
+const { minCongress = 17, maxCongress = 118 } = Astro.props;
+---
+
+<div class="flex flex-col gap-2 p-4 bg-white rounded-lg border border-mo-neutral-200">
+  <label for="congress-slider" class="text-sm font-semibold text-mo-neutral-800">
+    Congress: <span id="congress-label">{maxCongress}th</span>
+  </label>
+  <input
+    type="range"
+    id="congress-slider"
+    min={minCongress}
+    max={maxCongress}
+    value={maxCongress}
+    step="1"
+    class="w-full accent-mo-navy"
+  />
+  <div class="flex justify-between text-xs text-mo-neutral-600">
+    <span>{minCongress}th (1821)</span>
+    <span>{maxCongress}th (2023)</span>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment variables (contains Supabase keys)
+.env
+.env.production
+.dev.vars
+
+# Cloudflare
+.wrangler/
+worker-configuration.d.ts
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Temporary data pipeline output
+data/_temp_*
+scripts/_temp_*

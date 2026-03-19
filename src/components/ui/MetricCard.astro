@@ -1,0 +1,43 @@
+---
+/**
+ * MetricCard — Small card displaying a single redistricting metric.
+ * Shows the metric name, value, and a brief description.
+ * Used in the editor sidebar and fair maps comparison view.
+ *
+ * Props:
+ *   label       — Metric display name (e.g., "Polsby-Popper")
+ *   value       — Formatted metric value (e.g., "0.42")
+ *   description — One-line explanation of what the metric means
+ *   status      — Optional visual status: 'good', 'warning', or 'bad'
+ */
+
+interface Props {
+  label: string;
+  value: string;
+  description: string;
+  status?: 'good' | 'warning' | 'bad';
+}
+
+const { label, value, description, status } = Astro.props;
+
+/** Map status to border accent color */
+const statusColors = {
+  good: 'border-l-green-500',
+  warning: 'border-l-yellow-500',
+  bad: 'border-l-red-500',
+};
+
+const borderClass = status ? statusColors[status] : 'border-l-mo-neutral-200';
+---
+
+<div class={`p-4 bg-white rounded-lg border border-mo-neutral-200 border-l-4 ${borderClass}`}>
+  <div class="text-xs font-semibold uppercase tracking-wide text-mo-neutral-600 mb-1">
+    {label}
+  </div>
+  <div class="text-2xl font-bold text-mo-neutral-800 mb-1">
+    {value}
+  </div>
+  <div class="text-xs text-mo-neutral-600">
+    {description}
+  </div>
+</div>

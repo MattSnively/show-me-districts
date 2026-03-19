@@ -1,0 +1,76 @@
+---
+/**
+ * Fair Maps Page — Feature 3: Browse and compare pre-computed fair district plans.
+ * Hosts the FairMapViewer Svelte island for side-by-side comparison with
+ * metric scoring (compactness, population deviation, efficiency gap, etc.).
+ * Actual viewer component will be built in Phase 4.
+ */
+
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Fair Maps"
+  description="Browse community-created and algorithm-generated Missouri district plans. Compare metrics side by side."
+>
+  <!-- Page header -->
+  <section class="bg-mo-navy text-white py-10">
+    <div class="container-site">
+      <h1 class="font-headline text-3xl font-bold mb-2">Fair Maps</h1>
+      <p class="text-white/70 max-w-2xl">
+        What would Missouri look like with "fairly" drawn districts? Browse community plans,
+        compare metrics, and see how the current map stacks up against alternatives.
+      </p>
+    </div>
+  </section>
+
+  <!-- Viewer container — Svelte island will mount here in Phase 4 -->
+  <section class="container-site py-8">
+    <div class="rounded-lg border border-mo-neutral-200 bg-white shadow-sm overflow-hidden">
+      {/* Placeholder for FairMapViewer.svelte (client:load) */}
+      <div class="h-[500px] md:h-[650px] flex items-center justify-center bg-mo-neutral-100">
+        <div class="text-center text-mo-neutral-600">
+          <p class="text-lg font-semibold mb-2">Fair Map Viewer</p>
+          <p class="text-sm">Side-by-side comparison tool — coming in Phase 4</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics explainer -->
+    <div class="mt-8">
+      <h2 class="font-headline text-xl font-bold text-mo-neutral-800 mb-4">
+        How We Measure Fairness
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-lg bg-mo-neutral-100">
+          <h3 class="font-bold text-mo-neutral-800 mb-1">Polsby-Popper Compactness</h3>
+          <p class="text-sm text-mo-neutral-600">
+            Measures how close a district is to a circle. Higher scores mean more compact,
+            less gerrymandered shapes. Range: 0 to 1.
+          </p>
+        </div>
+        <div class="p-5 rounded-lg bg-mo-neutral-100">
+          <h3 class="font-bold text-mo-neutral-800 mb-1">Population Deviation</h3>
+          <p class="text-sm text-mo-neutral-600">
+            How far each district's population strays from the ideal (total / 8).
+            Federal law requires districts be as equal as practicable.
+          </p>
+        </div>
+        <div class="p-5 rounded-lg bg-mo-neutral-100">
+          <h3 class="font-bold text-mo-neutral-800 mb-1">Efficiency Gap</h3>
+          <p class="text-sm text-mo-neutral-600">
+            Compares "wasted votes" between parties across all districts.
+            A large gap suggests one party's votes are being systematically diluted.
+          </p>
+        </div>
+        <div class="p-5 rounded-lg bg-mo-neutral-100">
+          <h3 class="font-bold text-mo-neutral-800 mb-1">Mean-Median Difference</h3>
+          <p class="text-sm text-mo-neutral-600">
+            Compares the mean and median vote share across districts.
+            A skewed mean-median gap can indicate partisan gerrymandering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

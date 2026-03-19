@@ -1,0 +1,60 @@
+---
+/**
+ * Navigation — Site header with logo, tagline, and main nav bar.
+ * Navy background nav bar with gold accent on hover/active links.
+ * Responsive: links wrap and center on smaller screens.
+ *
+ * Props:
+ *   currentPath — The current page path, used to highlight the active nav link.
+ */
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+/** Navigation links matching the site structure */
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/history', label: 'History' },
+  { href: '/editor', label: 'Draw Your Map' },
+  { href: '/fair-maps', label: 'Fair Maps' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="bg-white border-b border-mo-neutral-200">
+  <!-- Top section: logo and tagline -->
+  <div class="container-site py-5 pb-3 flex items-baseline justify-between flex-wrap gap-3
+              max-md:text-center max-md:justify-center">
+    <div>
+      <a href="/" class="no-underline hover:no-underline">
+        <div class="font-headline text-[2rem] font-bold text-mo-navy tracking-tight">
+          SHOW-ME <span class="text-mo-gold">DISTRICTS</span>
+        </div>
+      </a>
+      <div class="text-sm text-mo-neutral-600 italic">
+        Missouri's congressional districts — past, present, and reimagined
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation bar -->
+  <nav class="bg-mo-navy" aria-label="Main navigation">
+    <div class="container-site flex flex-wrap max-md:justify-center">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-white px-5 py-3 text-sm font-semibold uppercase tracking-wide transition-colors',
+            'hover:bg-mo-gold hover:text-mo-navy hover:no-underline',
+            { 'bg-mo-gold text-mo-navy': currentPath === link.href },
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>

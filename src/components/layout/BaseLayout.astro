@@ -1,0 +1,70 @@
+---
+/**
+ * BaseLayout — Root HTML shell used by every page on the site.
+ * Provides <head> meta tags, global CSS, and the shared Navigation + Footer chrome.
+ * All pages should use this as their outermost wrapper.
+ *
+ * Props:
+ *   title       — Page <title> (appended with " | Show-Me Districts")
+ *   description — Meta description for SEO / Open Graph
+ *   ogImage     — Open Graph image URL (optional)
+ */
+
+import Navigation from './Navigation.astro';
+import Footer from './Footer.astro';
+import '../../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Explore Missouri\'s congressional districts — past, present, and what they could look like. Open-source redistricting tools for civic engagement.',
+  ogImage = '/og-default.png',
+} = Astro.props;
+
+/** Resolve the current page path for active nav highlighting */
+const currentPath = new URL(Astro.request.url).pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Show-Me Districts</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Show-Me Districts`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Show-Me Districts" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Show-Me Districts`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <!-- Site header with logo and navigation -->
+    <Navigation currentPath={currentPath} />
+
+    <!-- Page content injected by child pages -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Site-wide footer -->
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,107 @@
+---
+/**
+ * Landing Page — Project overview and navigation cards to the three main features:
+ *   1. Historical district visualization
+ *   2. Collaborative district editor
+ *   3. Fair maps viewer
+ * Static page (default hybrid behavior).
+ */
+
+import BaseLayout from '../components/layout/BaseLayout.astro';
+
+/** Feature cards displayed on the landing page */
+const features = [
+  {
+    href: '/history',
+    title: 'District History',
+    description:
+      'Watch Missouri\'s congressional boundaries evolve from statehood to today. See how election results shaped — and were shaped by — the lines on the map.',
+    icon: '1789–2025',
+    accent: 'bg-mo-navy',
+  },
+  {
+    href: '/editor',
+    title: 'Draw Your Map',
+    description:
+      'Paint census tracts to create your own congressional district plan. Real-time population and fairness metrics keep you honest.',
+    icon: 'Interactive',
+    accent: 'bg-mo-gold',
+  },
+  {
+    href: '/fair-maps',
+    title: 'Fair Maps',
+    description:
+      'Browse community-created and algorithm-generated district plans. Compare them side-by-side on compactness, population balance, and partisan fairness.',
+    icon: 'Compare',
+    accent: 'bg-mo-red',
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- Hero section -->
+  <section class="bg-mo-navy text-white py-16 md:py-24">
+    <div class="container-site text-center">
+      <h1 class="font-headline text-4xl md:text-5xl font-bold mb-4 leading-tight">
+        Missouri's Districts,<br />
+        <span class="text-mo-gold">Shown Clearly</span>
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+        Congressional redistricting decides who represents you. Explore the history,
+        draw your own map, and compare fair alternatives — all in one place.
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature cards -->
+  <section class="container-site py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <a
+          href={feature.href}
+          class="group block rounded-lg border border-mo-neutral-200 bg-white
+                 shadow-sm hover:shadow-md transition-shadow no-underline"
+        >
+          {/* Accent bar at top of card */}
+          <div class={`${feature.accent} h-1.5 rounded-t-lg`} />
+
+          <div class="p-6">
+            {/* Small label badge */}
+            <span class="inline-block text-xs font-semibold uppercase tracking-widest
+                         text-mo-neutral-600 mb-3">
+              {feature.icon}
+            </span>
+
+            <h2 class="font-headline text-xl font-bold text-mo-neutral-800 mb-2
+                       group-hover:text-mo-navy transition-colors">
+              {feature.title}
+            </h2>
+
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Brief "why this matters" section -->
+  <section class="bg-mo-neutral-100 py-12 md:py-16">
+    <div class="container-site max-w-3xl text-center">
+      <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">
+        Why Redistricting Matters
+      </h2>
+      <p class="text-mo-neutral-600 leading-relaxed mb-4">
+        Every ten years, congressional district lines are redrawn after the census.
+        The way those lines are drawn determines which communities share representation
+        — and can entrench or dilute political power. Missouri has gone from 16 districts
+        in 1820 to 8 today, and the battles over where to draw the lines have never stopped.
+      </p>
+      <p class="text-mo-neutral-600 leading-relaxed">
+        This project puts the tools of redistricting in your hands. No party affiliation
+        required — just curiosity about how democracy works at the most fundamental level.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,152 @@
+---
+/**
+ * About Page — Methodology, data sources, fairness statement, and project context.
+ * Static content page explaining the project's goals, data pipeline, and commitment
+ * to nonpartisan transparency.
+ */
+
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Methodology, data sources, and fairness statement for the Show-Me Districts redistricting project."
+>
+  <!-- Page header -->
+  <section class="bg-mo-navy text-white py-10">
+    <div class="container-site">
+      <h1 class="font-headline text-3xl font-bold mb-2">About This Project</h1>
+      <p class="text-white/70 max-w-2xl">
+        How we built it, where the data comes from, and why we believe redistricting
+        transparency serves everyone — regardless of party.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-site py-10 max-w-3xl">
+    <!-- Mission -->
+    <div class="mb-10">
+      <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-3">Mission</h2>
+      <p class="text-mo-neutral-600 leading-relaxed mb-3">
+        Show-Me Districts exists to make Missouri's redistricting process transparent and
+        accessible. We are not affiliated with any political party, campaign, or advocacy
+        organization. Gerrymandering is a bipartisan problem — both parties have drawn
+        self-serving maps when given the chance — and the antidote is sunlight.
+      </p>
+      <p class="text-mo-neutral-600 leading-relaxed">
+        Our tools let you explore district history, draw your own plan, and compare it
+        against alternatives scored on objective metrics. We present facts and let
+        citizens draw their own conclusions.
+      </p>
+    </div>
+
+    <!-- Data Sources -->
+    <div class="mb-10">
+      <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-3">Data Sources</h2>
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="border-b-2 border-mo-neutral-200 text-left">
+            <th class="py-2 pr-4 text-mo-neutral-800">Data</th>
+            <th class="py-2 text-mo-neutral-800">Source</th>
+          </tr>
+        </thead>
+        <tbody class="text-mo-neutral-600">
+          <tr class="border-b border-mo-neutral-200">
+            <td class="py-2 pr-4">Historical district boundaries</td>
+            <td class="py-2">
+              <a href="https://cdmaps.polisci.ucla.edu/" class="text-mo-blue hover:underline">
+                UCLA Congressional District Shapefiles
+              </a>
+            </td>
+          </tr>
+          <tr class="border-b border-mo-neutral-200">
+            <td class="py-2 pr-4">Current district boundaries</td>
+            <td class="py-2">
+              <a href="https://www.census.gov/cgi-bin/geo/shapefiles/index.php" class="text-mo-blue hover:underline">
+                Census TIGER/Line Shapefiles
+              </a>
+            </td>
+          </tr>
+          <tr class="border-b border-mo-neutral-200">
+            <td class="py-2 pr-4">Election results</td>
+            <td class="py-2">
+              <a href="https://www.sos.mo.gov/elections/resultsandstats/previouselections" class="text-mo-blue hover:underline">
+                Missouri Secretary of State
+              </a>
+            </td>
+          </tr>
+          <tr class="border-b border-mo-neutral-200">
+            <td class="py-2 pr-4">Census population data</td>
+            <td class="py-2">
+              <a href="https://redistrictingdatahub.org/state/missouri/" class="text-mo-blue hover:underline">
+                Redistricting Data Hub
+              </a>
+            </td>
+          </tr>
+          <tr class="border-b border-mo-neutral-200">
+            <td class="py-2 pr-4">Community fair maps</td>
+            <td class="py-2">
+              <a href="https://davesredistricting.org/" class="text-mo-blue hover:underline">
+                Dave's Redistricting App
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Methodology -->
+    <div class="mb-10">
+      <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-3">Methodology</h2>
+      <p class="text-mo-neutral-600 leading-relaxed mb-3">
+        <strong>Historical boundaries</strong> are sourced from the UCLA Congressional
+        District Shapefiles project, which digitized boundaries for every Congress since
+        1789. We extract Missouri's features, simplify geometries for web performance,
+        and overlay election results compiled from the Secretary of State's archives.
+      </p>
+      <p class="text-mo-neutral-600 leading-relaxed mb-3">
+        <strong>The district editor</strong> uses 2020 census tract boundaries (~1,400 tracts
+        in Missouri) as the smallest paintable unit. Census tracts are large enough for
+        performant browser rendering while small enough for meaningful district design.
+        Population and voting-age population are sourced from the 2020 PL 94-171
+        redistricting data.
+      </p>
+      <p class="text-mo-neutral-600 leading-relaxed">
+        <strong>Fairness metrics</strong> include Polsby-Popper compactness, Reock compactness,
+        population deviation from ideal, the efficiency gap, and the mean-median vote share
+        difference. Each metric is computed client-side using Turf.js for geometric
+        calculations. We explain what each metric measures and its limitations — no single
+        metric captures "fairness" completely.
+      </p>
+    </div>
+
+    <!-- Fairness Statement -->
+    <div class="mb-10 p-6 rounded-lg bg-mo-neutral-100 border border-mo-neutral-200">
+      <h2 class="font-headline text-xl font-bold text-mo-neutral-800 mb-3">
+        Fairness Statement
+      </h2>
+      <p class="text-mo-neutral-600 leading-relaxed mb-3">
+        We present data and tools — not conclusions about which party "should" win.
+        Reasonable people disagree about what constitutes a fair map: some prioritize
+        compact shapes, others prioritize keeping communities of interest together,
+        and still others prioritize competitive elections.
+      </p>
+      <p class="text-mo-neutral-600 leading-relaxed">
+        Our metrics are descriptive, not prescriptive. A map with a high efficiency gap
+        is not automatically "gerrymandered" — Missouri's political geography naturally
+        concentrates Democratic voters in Kansas City and St. Louis. We encourage users
+        to weigh multiple metrics and form their own judgments.
+      </p>
+    </div>
+
+    <!-- Open Source -->
+    <div>
+      <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-3">Open Source</h2>
+      <p class="text-mo-neutral-600 leading-relaxed">
+        This project is open-source under the MIT License. All data processing scripts,
+        source code, and documentation are publicly available. If you find an error or
+        want to contribute, we welcome pull requests and issue reports.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

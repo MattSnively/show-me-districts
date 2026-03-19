@@ -1,0 +1,53 @@
+---
+/**
+ * Footer — Site-wide footer with 3-column grid:
+ *   1. About blurb
+ *   2. Data Sources links
+ *   3. Navigation links
+ * Navy background with white text. Includes fairness disclaimer.
+ */
+---
+
+<footer class="bg-mo-navy text-white/70 mt-12">
+  <div class="container-site py-8 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10">
+    <!-- About blurb -->
+    <div>
+      <h3 class="text-white text-sm uppercase tracking-widest mb-3">About This Project</h3>
+      <p class="text-sm text-white/60 leading-relaxed">
+        Show-Me Districts is an open-source civic engagement project. We visualize
+        Missouri's congressional district history, provide tools for citizens to draw
+        their own maps, and present algorithmically fair alternatives for comparison.
+        This is a transparency project, not advocacy for any party.
+      </p>
+    </div>
+
+    <!-- Data Sources -->
+    <div>
+      <h3 class="text-white text-sm uppercase tracking-widest mb-3">Data Sources</h3>
+      <ul class="space-y-1.5">
+        <li><a href="https://cdmaps.polisci.ucla.edu/" class="text-sm text-white/60 hover:text-white">UCLA District Maps</a></li>
+        <li><a href="https://www.census.gov/programs-surveys/decennial-census/about/rdo.html" class="text-sm text-white/60 hover:text-white">U.S. Census Bureau</a></li>
+        <li><a href="https://www.sos.mo.gov/elections" class="text-sm text-white/60 hover:text-white">MO Secretary of State</a></li>
+        <li><a href="https://redistrictingdatahub.org/" class="text-sm text-white/60 hover:text-white">Redistricting Data Hub</a></li>
+        <li><a href="https://davesredistricting.org/" class="text-sm text-white/60 hover:text-white">Dave's Redistricting</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigate -->
+    <div>
+      <h3 class="text-white text-sm uppercase tracking-widest mb-3">Navigate</h3>
+      <ul class="space-y-1.5">
+        <li><a href="/history" class="text-sm text-white/60 hover:text-white">District History</a></li>
+        <li><a href="/editor" class="text-sm text-white/60 hover:text-white">Draw Your Map</a></li>
+        <li><a href="/fair-maps" class="text-sm text-white/60 hover:text-white">Fair Maps</a></li>
+        <li><a href="/about" class="text-sm text-white/60 hover:text-white">About / Methodology</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom bar with copyright and disclaimer -->
+  <div class="border-t border-white/10 text-center text-xs text-white/40 py-4 container-site">
+    &copy; 2026 Show-Me Districts. Open-source under MIT License.
+    This is a nonpartisan civic transparency project.
+  </div>
+</footer>
