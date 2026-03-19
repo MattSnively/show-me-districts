@@ -2,11 +2,12 @@
 /**
  * Editor Page — Feature 2: Collaborative district drawing tool.
  * Hosts the DistrictEditor Svelte island where users can paint census tracts
- * into 8 congressional districts, view real-time metrics, and save/share maps.
- * Actual editor component will be built in Phase 3.
+ * into 8 congressional districts, view real-time population metrics, and
+ * (eventually) save/share maps via Supabase.
  */
 
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import DistrictEditor from '../components/maps/DistrictEditor.svelte';
 ---
 
 <BaseLayout
@@ -19,43 +20,58 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
       <h1 class="font-headline text-3xl font-bold mb-2">Draw Your Map</h1>
       <p class="text-white/70 max-w-2xl">
         Think you can draw fairer districts? Select a district color, paint census tracts,
-        and watch population and fairness metrics update in real time. Save and share your plan.
+        and watch population metrics update in real time.
       </p>
     </div>
   </section>
 
-  <!-- Editor container — Svelte island will mount here in Phase 3 -->
+  <!-- Editor container — full-width Svelte island -->
   <section class="container-site py-8">
     <div class="rounded-lg border border-mo-neutral-200 bg-white shadow-sm overflow-hidden">
-      {/* Placeholder for DistrictEditor.svelte (client:load) */}
-      <div class="h-[600px] md:h-[750px] flex items-center justify-center bg-mo-neutral-100">
-        <div class="text-center text-mo-neutral-600">
-          <p class="text-lg font-semibold mb-2">District Editor</p>
-          <p class="text-sm">Interactive painting tool — coming in Phase 3</p>
-        </div>
+      <div class="h-[600px] md:h-[750px]">
+        <DistrictEditor client:load />
       </div>
     </div>
 
-    <!-- How it works -->
+    <!-- Instructions below the editor -->
     <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="p-5 rounded-lg bg-mo-neutral-100">
         <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">1. Pick a District</h3>
         <p class="text-sm text-mo-neutral-600">
-          Choose from 8 color-coded district slots in the sidebar.
+          Choose from 8 color-coded district slots in the sidebar. Use the eraser to
+          unassign tracts. The active district is highlighted.
         </p>
       </div>
       <div class="p-5 rounded-lg bg-mo-neutral-100">
         <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">2. Paint Tracts</h3>
         <p class="text-sm text-mo-neutral-600">
-          Click or drag over census tracts to assign them. Population counters update live.
+          Click a tract to assign it, or click-and-drag to paint multiple tracts at once.
+          Population deviation bars update instantly. Aim for less than 1% deviation.
         </p>
       </div>
       <div class="p-5 rounded-lg bg-mo-neutral-100">
-        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">3. Save & Share</h3>
+        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">3. Undo & Iterate</h3>
         <p class="text-sm text-mo-neutral-600">
-          Get a permalink to your map. Publish it to the community gallery for others to see.
+          Use Ctrl+Z / Ctrl+Y to undo and redo. The deviation bar turns green when a
+          district is within 1% of ideal population, yellow under 5%, red above 5%.
         </p>
       </div>
+    </div>
+
+    <!-- Additional context -->
+    <div class="mt-8 p-5 rounded-lg bg-mo-neutral-100">
+      <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">About the Data</h3>
+      <p class="text-sm text-mo-neutral-600 leading-relaxed">
+        The editor uses 1,654 census tracts from the 2020 U.S. Census as the smallest
+        paintable unit. Missouri's total population is 6,154,913, giving an ideal district
+        size of about 769,364 people. The dashed blue overlay shows the current enacted
+        congressional district boundaries for reference.
+      </p>
+      <p class="text-sm text-mo-neutral-600 leading-relaxed mt-2">
+        <strong>Note:</strong> Population values are currently estimated from land area
+        and should be treated as approximate. We are working on integrating exact PL 94-171
+        census data for accurate redistricting.
+      </p>
     </div>
   </section>
 </BaseLayout>
