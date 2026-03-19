@@ -493,7 +493,7 @@
     <!-- Map area -->
     <div class="flex-1 flex min-h-[300px] relative order-1">
       <!-- Left / primary map -->
-      <div class="{isComparing ? 'w-1/2 border-r border-gray-300' : 'w-full'} relative">
+      <div class="{isComparing ? 'w-1/2 border-r border-gray-300' : 'w-full'} relative h-full">
         <div
           class="absolute inset-0"
           bind:this={leftMapContainer}
@@ -522,7 +522,7 @@
 
       <!-- Right / comparison map (only visible in compare mode) -->
       {#if isComparing}
-        <div class="w-1/2 relative">
+        <div class="w-1/2 relative h-full">
           <div
             class="absolute inset-0"
             bind:this={rightMapContainer}
