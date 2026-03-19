@@ -39,3 +39,6 @@ data/census/mo-tracts-2020-raw.geojson
 # Unsimplified historical GeoJSON (large, reproducible)
 data/historical/congress-*.geojson
 !data/historical/congress-index.json
+
+# Public data directory (copied from data/ by prepare-public-data script)
+public/data/

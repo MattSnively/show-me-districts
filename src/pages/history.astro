@@ -2,11 +2,22 @@
 /**
  * History Page — Feature 1: Historical district visualization.
  * Hosts the HistoricalMap Svelte island with a timeline slider to browse
- * Missouri congressional districts from 1789 to the present.
- * Actual map component will be built in Phase 2.
+ * Missouri congressional districts from the 17th Congress (1821) to the present.
+ * Loads congress-index.json at build time and passes it to the Svelte component.
  */
 
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import HistoricalMap from '../components/maps/HistoricalMap.svelte';
+import congressIndexRaw from '../../data/historical/congress-index.json';
+
+/** Type-safe congress index for the timeline component */
+const congressIndex = congressIndexRaw as Array<{
+  congress: number;
+  startYear: number;
+  endYear: number;
+  districts: number;
+  file: string;
+}>;
 ---
 
 <BaseLayout
@@ -19,34 +30,71 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
       <h1 class="font-headline text-3xl font-bold mb-2">District History</h1>
       <p class="text-white/70 max-w-2xl">
         Explore how Missouri's congressional boundaries have shifted over two centuries.
-        Use the timeline to jump between eras and see election results for each district.
+        Use the timeline to jump between eras and click any district for election details.
       </p>
     </div>
   </section>
 
-  <!-- Map container — Svelte island will mount here in Phase 2 -->
+  <!-- Map container — Svelte island with full interactivity -->
   <section class="container-site py-8">
     <div class="rounded-lg border border-mo-neutral-200 bg-white shadow-sm overflow-hidden">
-      {/* Placeholder for HistoricalMap.svelte (client:load) */}
-      <div class="h-[500px] md:h-[650px] flex items-center justify-center bg-mo-neutral-100">
-        <div class="text-center text-mo-neutral-600">
-          <p class="text-lg font-semibold mb-2">Historical Map Viewer</p>
-          <p class="text-sm">Interactive timeline map — coming in Phase 2</p>
-        </div>
+      <div class="h-[550px] md:h-[700px]">
+        <HistoricalMap
+          client:load
+          congressIndex={congressIndex}
+        />
       </div>
     </div>
 
-    <!-- Narrative context panels will go below the map -->
-    <div class="mt-8 prose prose-sm max-w-none text-mo-neutral-600">
-      <h2 class="font-headline text-xl text-mo-neutral-800">Key Moments in Missouri Redistricting</h2>
-      <ul>
-        <li><strong>1821:</strong> Missouri admitted with one at-large congressional seat.</li>
-        <li><strong>1840s–1860s:</strong> Rapid growth pushed the state to 9 districts before the Civil War.</li>
-        <li><strong>1870s–1930s:</strong> Missouri peaked at 16 districts, reflecting its status as a major population center.</li>
-        <li><strong>1960s:</strong> <em>Baker v. Carr</em> and <em>Reynolds v. Sims</em> forced equal-population districts nationwide.</li>
-        <li><strong>2010:</strong> Missouri lost its 9th district after the census, dropping to 8.</li>
-        <li><strong>2020:</strong> Current 8-district map enacted — the one you can redraw in our editor.</li>
-      </ul>
+    <!-- Narrative context panels below the map -->
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">
+          Growth Era (1821–1870s)
+        </h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          Missouri entered the Union in 1821 with one at-large seat. Rapid westward
+          expansion and population growth pushed the state from 1 district to 13 by
+          the Civil War era. Early districts followed county lines and reflected
+          Missouri's position as a gateway to the West.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">
+          Peak Representation (1870s–1930s)
+        </h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          Missouri peaked at 16 congressional districts in the 1870s–1900s, reflecting
+          its status as one of America's most populous states. St. Louis was the 4th
+          largest city in the nation. But relative population decline set in as the Sun
+          Belt grew.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">
+          Reapportionment Revolution (1960s)
+        </h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          The Supreme Court's <em>Baker v. Carr</em> (1962) and <em>Reynolds v. Sims</em>
+          (1964) decisions required equal-population districts nationwide. Missouri
+          had to completely redraw its maps, ending decades of malapportioned rural
+          districts. The state dropped from 11 to 10 seats.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">
+          Modern Era (2000–Present)
+        </h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          Missouri lost its 9th seat after the 2010 census, dropping to 8 districts.
+          The current map features two heavily Democratic districts (1st in St. Louis,
+          5th in Kansas City) and six solidly Republican seats — a pattern driven
+          by both geography and intentional line-drawing.
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>

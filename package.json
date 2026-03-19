@@ -6,8 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "prepare-data": "node scripts/prepare-public-data.js",
+    "dev": "node scripts/prepare-public-data.js && astro dev",
+    "build": "node scripts/prepare-public-data.js && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types"
