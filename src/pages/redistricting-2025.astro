@@ -1,0 +1,438 @@
+---
+/**
+ * Redistricting 2025 Page — Covers the mid-cycle congressional redistricting
+ * effort led by Missouri's Republican legislature and signed by Gov. Kehoe
+ * in September 2025. Includes side-by-side map comparison, legal analysis,
+ * impact assessment, and current status of court challenges and referendum.
+ *
+ * This page aims for balanced, nonpartisan coverage — presenting both sides'
+ * legal arguments and factual impacts without editorial judgment.
+ */
+
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import RedistrictingComparison from '../components/maps/RedistrictingComparison.svelte';
+---
+
+<BaseLayout
+  title="2025 Mid-Cycle Redistricting"
+  description="Missouri's 2025 congressional redistricting: side-by-side map comparison, legal arguments, community impact, and the ongoing referendum effort."
+>
+  <!-- Page header -->
+  <section class="bg-mo-navy text-white py-10">
+    <div class="container-site">
+      <h1 class="font-headline text-3xl font-bold mb-2">2025 Mid-Cycle Redistricting</h1>
+      <p class="text-white/70 max-w-2xl">
+        In September 2025, Missouri's legislature redrew congressional district boundaries
+        outside the normal post-census cycle. Here's what happened, why it matters, and
+        where things stand.
+      </p>
+    </div>
+  </section>
+
+  <!-- What Happened — Timeline -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">What Happened</h2>
+
+    <div class="prose prose-sm max-w-3xl text-mo-neutral-600 leading-relaxed">
+      <p>
+        On August 29, 2025, Gov. Mike Kehoe called a special session of the Missouri General
+        Assembly to redraw the state's eight congressional districts. The effort was part of a
+        broader national push — coordinated by the White House and the National Republican
+        Redistricting Trust — to redraw maps in several states ahead of the 2026 midterms to
+        protect the Republican House majority.
+      </p>
+      <p>
+        The Missouri House passed HB 1 on September 9 (90-65, party-line), the Senate followed
+        on September 12 (21-11), and Gov. Kehoe signed it into law on September 28, 2025.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-6 border-l-2 border-mo-navy/20 pl-6 space-y-6 max-w-2xl">
+      <div>
+        <div class="text-xs text-mo-navy font-bold uppercase">Aug 29, 2025</div>
+        <div class="text-sm text-mo-neutral-700 font-semibold">Special session called</div>
+        <div class="text-sm text-mo-neutral-500">Gov. Kehoe announces special session for congressional redistricting and initiative petition reform.</div>
+      </div>
+      <div>
+        <div class="text-xs text-mo-navy font-bold uppercase">Sept 3, 2025</div>
+        <div class="text-sm text-mo-neutral-700 font-semibold">Special session convenes</div>
+        <div class="text-sm text-mo-neutral-500">Legislature begins work on HB 1, sponsored by Rep. Dirk Deaton (House) and Sen. Rusty Black (Senate).</div>
+      </div>
+      <div>
+        <div class="text-xs text-mo-navy font-bold uppercase">Sept 9, 2025</div>
+        <div class="text-sm text-mo-neutral-700 font-semibold">House passes HB 1</div>
+        <div class="text-sm text-mo-neutral-500">Party-line vote, 90-65. All Republican ayes, all Democratic nays.</div>
+      </div>
+      <div>
+        <div class="text-xs text-mo-navy font-bold uppercase">Sept 12, 2025</div>
+        <div class="text-sm text-mo-neutral-700 font-semibold">Senate passes HB 1</div>
+        <div class="text-sm text-mo-neutral-500">Vote 21-11. Map heads to Gov. Kehoe's desk.</div>
+      </div>
+      <div>
+        <div class="text-xs text-mo-navy font-bold uppercase">Sept 28, 2025</div>
+        <div class="text-sm text-mo-neutral-700 font-semibold">Governor signs HB 1</div>
+        <div class="text-sm text-mo-neutral-500">New districts become law. Legal challenges and referendum efforts begin.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Side-by-side map comparison -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-2">The Maps: Before and After</h2>
+    <p class="text-sm text-mo-neutral-600 mb-4 max-w-3xl">
+      Pan and zoom either map — both stay in sync. Click a district for population
+      and demographic breakdown.
+    </p>
+
+    <div class="rounded-lg border border-mo-neutral-200 bg-white shadow-sm overflow-hidden">
+      <div class="h-[400px] md:h-[550px]">
+        <RedistrictingComparison client:load />
+      </div>
+    </div>
+
+    <!-- Key changes table -->
+    <div class="mt-6 overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead>
+          <tr class="bg-mo-neutral-100 text-left">
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">District</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">2022 Map</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">HB 1 (2025)</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">Partisan Shift</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-2 font-medium">CD-1</td>
+            <td class="px-4 py-2 text-mo-neutral-600">St. Louis (safe D)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Minimal changes</td>
+            <td class="px-4 py-2"><span class="text-blue-600 font-medium">Stays D</span></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">CD-2</td>
+            <td class="px-4 py-2 text-mo-neutral-600">St. Louis suburbs (R+11)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Extended into southern MO</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">R+11 → R+14</span></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-medium">CD-3</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Central/northeast MO</td>
+            <td class="px-4 py-2 text-mo-neutral-600">More compact, St. Charles to Hannibal</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">Stays R+20</span></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">CD-4</td>
+            <td class="px-4 py-2 text-mo-neutral-600">West-central MO (safe R)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Gains part of Kansas City (west of Troost)</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">More safely R</span></td>
+          </tr>
+          <tr class="bg-yellow-50">
+            <td class="px-4 py-2 font-bold">CD-5</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Kansas City (safe D, Rep. Cleaver)</td>
+            <td class="px-4 py-2 text-mo-neutral-600 font-medium">KC remnant + 14 rural counties east to Osage County</td>
+            <td class="px-4 py-2"><span class="font-bold">Solid D → <span class="text-red-600">Solid R</span></span></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">CD-6</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Northwest MO (safe R)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Gains part of Kansas City</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">Stays safely R</span></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-medium">CD-7</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Southwest MO (safe R)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">No significant change</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">No change</span></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">CD-8</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Southeast MO (safe R)</td>
+            <td class="px-4 py-2 text-mo-neutral-600">No significant change</td>
+            <td class="px-4 py-2"><span class="text-red-600 font-medium">No change</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-3 text-xs text-mo-neutral-500 italic">
+      Net effect: Projected delegation shifts from 6R-2D to 7R-1D. CD-5 is the primary target.
+    </p>
+  </section>
+
+  <!-- Community Impact -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">Impact on Communities</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Kansas City Split</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          Under the current map, Kansas City is largely contained within CD-5. The HB 1 map
+          splits the city across three districts (CD-4, CD-5, and CD-6), diluting its
+          concentrated voting power. The new CD-5 stretches from a sliver of Kansas City
+          eastward through 14 rural counties to Osage County.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Troost Avenue &amp; Racial History</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          The new map uses Troost Avenue — Kansas City's historic line of racial segregation
+          since the 1920s — as a dividing line between CD-4 and CD-5. Majority-Black neighborhoods
+          east of Troost are placed into the rural-stretching CD-5, while predominantly white
+          neighborhoods west of Troost go to CD-4. Critics say this reopens long-standing racial
+          wounds; supporters say the line follows existing political boundaries.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Rep. Cleaver's District</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          Rep. Emanuel Cleaver (D), who has represented CD-5 since 2005 and won reelection
+          with over 60% in both 2022 and 2024, now faces a district that leans heavily
+          Republican. Four Republican candidates filed for the redrawn seat shortly after
+          the map was signed. Inside Elections shifted the seat rating from Solid D to Solid R.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-lg bg-mo-neutral-100">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Rural Communities</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          The new CD-5 pairs Kansas City urban voters with rural voters across 14 counties
+          who have different policy priorities — agriculture, broadband access, and rural
+          healthcare vs. urban transit, housing, and city services. Both communities may
+          find their specific concerns diluted in a sprawling, mixed district.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Arguments -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">Legal Arguments</h2>
+    <p class="text-sm text-mo-neutral-600 mb-6 max-w-3xl">
+      Mid-cycle redistricting raises important constitutional questions. Both sides present
+      substantive legal arguments grounded in federal and state law.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Arguments FOR -->
+      <div class="rounded-lg border-2 border-mo-neutral-300 overflow-hidden">
+        <div class="bg-mo-neutral-200 px-5 py-3">
+          <h3 class="font-bold text-mo-neutral-800">Arguments Supporting the New Map</h3>
+        </div>
+        <div class="p-5 space-y-4">
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Constitutional Authority</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              The U.S. Constitution's Elections Clause (Art. I, Sec. 4) grants state legislatures
+              broad authority over congressional election procedures. Neither federal law nor the
+              Constitution limits redistricting to once per decade.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Supreme Court Precedent</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              In <em>LULAC v. Perry</em> (2006), the U.S. Supreme Court explicitly ruled that
+              mid-decade redistricting is not per se unconstitutional. Texas's 2003 mid-cycle
+              redistricting was upheld. States may redistrict as often as they choose.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Governor's Justification</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              Gov. Kehoe stated the existing map "may be vulnerable to a legal challenge under
+              the Voting Rights Act and the Fourteenth Amendment, due to a lack of compactness
+              in certain districts."
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">State Constitution</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              Supporters argue that Missouri's once-per-decade redistricting language applies only
+              to state legislative districts, not congressional districts, leaving the legislature
+              free to redraw congressional maps at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arguments AGAINST -->
+      <div class="rounded-lg border-2 border-mo-neutral-300 overflow-hidden">
+        <div class="bg-mo-neutral-200 px-5 py-3">
+          <h3 class="font-bold text-mo-neutral-800">Arguments Opposing the New Map</h3>
+        </div>
+        <div class="p-5 space-y-4">
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Missouri Constitution</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              The ACLU and Campaign Legal Center argue the Missouri Constitution permits congressional
+              redistricting only once per decade following the decennial census. They also claim
+              the new districts violate the state's compactness requirement (Art. III, Sec. 45),
+              which requires districts be "as compact as may be."
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Voting Rights Act</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              Six of nine House members targeted by Republican redistricting efforts nationally
+              are Black or Latino. Critics argue the maps dilute minority voting power in
+              potential violation of Section 2 of the Voting Rights Act.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Partisan Gerrymandering</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              Opponents characterize the map as a partisan gerrymander drawn purely to maximize
+              Republican seats with no legitimate justification — no new census data, no court
+              order, no significant population shifts since 2020.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-mo-neutral-700 mb-1">Historical Norms</h4>
+            <p class="text-sm text-mo-neutral-600 leading-relaxed">
+              Before Texas in 2003, no state had attempted mid-decade redistricting for partisan
+              purposes since the Supreme Court's "one person, one vote" decisions. Critics warn
+              that normalizing mid-cycle redraws invites an escalating cycle of retaliatory
+              gerrymandering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where It Stands -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">Where It Stands</h2>
+
+    <div class="max-w-3xl space-y-6">
+      <!-- Court challenge -->
+      <div class="p-5 rounded-lg border border-mo-neutral-200 bg-white">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Court Challenge</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          The ACLU, ACLU of Missouri, and Campaign Legal Center filed suit challenging the
+          new map under the Missouri Constitution. On <strong>March 12, 2026</strong>, a Jackson
+          County Circuit Court judge upheld the map, ruling it does not violate the state
+          constitution. The ACLU has indicated plans to appeal, and the case is expected to
+          reach the Missouri Supreme Court.
+        </p>
+      </div>
+
+      <!-- Referendum -->
+      <div class="p-5 rounded-lg border border-mo-neutral-200 bg-white">
+        <h3 class="font-bold text-mo-neutral-800 mb-2">Citizen Referendum</h3>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed">
+          A citizen-led effort called <strong>"People Not Politicians"</strong> launched a
+          referendum petition to put the new map on the November 2026 ballot. Approximately
+          300,000 signatures were submitted in December 2025.
+        </p>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed mt-2">
+          If the referendum qualifies, it would <strong>suspend</strong> the new map for the
+          2026 election. If voters approve the referendum, the map would be permanently
+          overturned and the 2022 boundaries restored.
+        </p>
+        <p class="text-sm text-mo-neutral-600 leading-relaxed mt-2">
+          <strong>Dispute:</strong> Secretary of State Denny Hoskins (R) refused to verify
+          over 100,000 signatures, claiming they were collected before an October 14 cutoff date.
+          As of March 2026, the campaign was reportedly fewer than 200 signatures short of
+          meeting its goal, with a Cole County judge hearing arguments over the disputed
+          signatures. Deadline for certification: August 11, 2026.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- National Context -->
+  <section class="container-site py-8">
+    <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-4">National Context</h2>
+
+    <p class="text-sm text-mo-neutral-600 mb-4 max-w-3xl leading-relaxed">
+      Missouri's redistricting was part of a coordinated national effort. The White House and
+      National Republican Redistricting Trust worked with state legislatures in multiple states
+      to redraw maps ahead of the 2026 midterms. In response, Democratic-controlled states
+      like California also engaged in counter-redistricting.
+    </p>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden max-w-3xl">
+        <thead>
+          <tr class="bg-mo-neutral-100 text-left">
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">State</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">Party</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">Status</th>
+            <th class="px-4 py-3 font-semibold text-mo-neutral-700" scope="col">Seats Targeted</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-2 font-medium">Texas</td>
+            <td class="px-4 py-2 text-red-600 font-medium">R</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Enacted Aug 2025; upheld in court</td>
+            <td class="px-4 py-2 text-mo-neutral-600">5 D seats</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">Missouri</td>
+            <td class="px-4 py-2 text-red-600 font-medium">R</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Enacted Sept 2025; upheld at trial, appeal pending</td>
+            <td class="px-4 py-2 text-mo-neutral-600">1 D seat</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-medium">North Carolina</td>
+            <td class="px-4 py-2 text-red-600 font-medium">R</td>
+            <td class="px-4 py-2 text-mo-neutral-600">New map passed</td>
+            <td class="px-4 py-2 text-mo-neutral-600">1-2 D seats</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">Indiana</td>
+            <td class="px-4 py-2 text-red-600 font-medium">R</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Failed — 21 R senators voted no with all Democrats</td>
+            <td class="px-4 py-2 text-mo-neutral-600">1 D seat</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-medium">Kansas</td>
+            <td class="px-4 py-2 text-red-600 font-medium">R</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Stalled — insufficient intra-party votes</td>
+            <td class="px-4 py-2 text-mo-neutral-600">1 D seat</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-2 font-medium">California</td>
+            <td class="px-4 py-2 text-blue-600 font-medium">D</td>
+            <td class="px-4 py-2 text-mo-neutral-600">Counter-redistricting in response</td>
+            <td class="px-4 py-2 text-mo-neutral-600">R seats</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-3 text-xs text-mo-neutral-500 italic max-w-3xl">
+      By end of 2025, Republicans gained approximately 9 newly favorable seats through
+      redistricting nationally, compared to approximately 6 for Democrats.
+    </p>
+  </section>
+
+  <!-- Data Sources -->
+  <section class="container-site py-8">
+    <div class="p-5 rounded-lg bg-mo-neutral-100 max-w-3xl">
+      <h3 class="font-headline font-bold text-mo-neutral-800 mb-2">Sources &amp; Data</h3>
+      <p class="text-sm text-mo-neutral-600 leading-relaxed mb-3">
+        District boundaries are from the Missouri Spatial Data Information Service (MSDIS).
+        The current map shows the 2022 enacted boundaries from Census TIGER/Line files;
+        the HB 1 map shows the 2025 boundaries as signed into law.
+      </p>
+      <ul class="text-sm text-mo-neutral-600 space-y-1 list-disc pl-5">
+        <li><a href="https://data-msdis.opendata.arcgis.com/" class="text-mo-navy underline hover:text-mo-navy-light">MSDIS Open Data Portal</a> — HB 1 district shapefiles</li>
+        <li><a href="https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-missouri-first-map-law" class="text-mo-navy underline hover:text-mo-navy-light">Governor's Office</a> — HB 1 signing announcement</li>
+        <li><a href="https://www.aclu.org/press-releases/missouri-voters-challenge-mid-decade-redistricting-effort" class="text-mo-navy underline hover:text-mo-navy-light">ACLU</a> — Legal challenge filings</li>
+        <li><a href="https://ballotpedia.org/Redistricting_in_Missouri_ahead_of_the_2026_elections" class="text-mo-navy underline hover:text-mo-navy-light">Ballotpedia</a> — Redistricting overview and referendum status</li>
+        <li><a href="https://en.wikipedia.org/wiki/2025_Missouri_redistricting" class="text-mo-navy underline hover:text-mo-navy-light">Wikipedia</a> — 2025 Missouri redistricting timeline</li>
+      </ul>
+      <p class="text-xs text-mo-neutral-500 mt-3 italic">
+        This page presents factual information from public sources. Show-Me Districts is a
+        nonpartisan civic transparency project and does not advocate for or against any
+        redistricting plan.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -22,6 +22,7 @@ const copies = [
   { src: 'data/elections', dest: 'public/data/elections' },
   { src: 'data/census/mo-tracts-2020.geojson', dest: 'public/data/census/mo-tracts-2020.geojson' },
   { src: 'data/census/mo-cd-current.geojson', dest: 'public/data/census/mo-cd-current.geojson' },
+  { src: 'data/census/mo-cd-hb1-2025.geojson', dest: 'public/data/census/mo-cd-hb1-2025.geojson' },
   { src: 'data/fair-maps/ensemble-metadata.json', dest: 'public/data/fair-maps/ensemble-metadata.json' },
 ];
 
