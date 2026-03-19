@@ -1,0 +1,88 @@
+{
+  "congress": 119,
+  "electionYear": 2024,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2024,
+      "district": 1,
+      "candidates": [
+        { "name": "Wesley Bell", "party": "Democratic", "votes": 213841, "winner": true },
+        { "name": "Andrew Jones", "party": "Republican", "votes": 87215, "winner": false }
+      ],
+      "totalVotes": 301056,
+      "margin": -0.421
+    },
+    "2": {
+      "year": 2024,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 253479, "winner": true },
+        { "name": "Riley Atterbury", "party": "Democratic", "votes": 179631, "winner": false }
+      ],
+      "totalVotes": 433110,
+      "margin": 0.170
+    },
+    "3": {
+      "year": 2024,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 268192, "winner": true },
+        { "name": "Bethany Mann", "party": "Democratic", "votes": 110245, "winner": false }
+      ],
+      "totalVotes": 378437,
+      "margin": 0.417
+    },
+    "4": {
+      "year": 2024,
+      "district": 4,
+      "candidates": [
+        { "name": "Mark Alford", "party": "Republican", "votes": 259013, "winner": true },
+        { "name": "Jeanette Cass", "party": "Democratic", "votes": 95634, "winner": false }
+      ],
+      "totalVotes": 354647,
+      "margin": 0.461
+    },
+    "5": {
+      "year": 2024,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 199450, "winner": true },
+        { "name": "Sean Smith", "party": "Republican", "votes": 149831, "winner": false }
+      ],
+      "totalVotes": 349281,
+      "margin": -0.142
+    },
+    "6": {
+      "year": 2024,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 268419, "winner": true },
+        { "name": "Mike Unsell", "party": "Democratic", "votes": 102567, "winner": false }
+      ],
+      "totalVotes": 370986,
+      "margin": 0.447
+    },
+    "7": {
+      "year": 2024,
+      "district": 7,
+      "candidates": [
+        { "name": "Eric Burlison", "party": "Republican", "votes": 270103, "winner": true },
+        { "name": "Ray Reed", "party": "Democratic", "votes": 87421, "winner": false }
+      ],
+      "totalVotes": 357524,
+      "margin": 0.511
+    },
+    "8": {
+      "year": 2024,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 255610, "winner": true },
+        { "name": "Randi McCallian", "party": "Democratic", "votes": 59732, "winner": false }
+      ],
+      "totalVotes": 315342,
+      "margin": 0.621
+    }
+  }
+}

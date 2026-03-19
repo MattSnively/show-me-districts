@@ -1,0 +1,88 @@
+{
+  "congress": 117,
+  "electionYear": 2020,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2020,
+      "district": 1,
+      "candidates": [
+        { "name": "Cori Bush", "party": "Democratic", "votes": 247625, "winner": true },
+        { "name": "Anthony Rogers", "party": "Republican", "votes": 66912, "winner": false }
+      ],
+      "totalVotes": 314537,
+      "margin": -0.574
+    },
+    "2": {
+      "year": 2020,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 260854, "winner": true },
+        { "name": "Jill Schupp", "party": "Democratic", "votes": 231498, "winner": false }
+      ],
+      "totalVotes": 492352,
+      "margin": 0.060
+    },
+    "3": {
+      "year": 2020,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 265675, "winner": true },
+        { "name": "Megan Rezabek", "party": "Democratic", "votes": 127918, "winner": false }
+      ],
+      "totalVotes": 393593,
+      "margin": 0.350
+    },
+    "4": {
+      "year": 2020,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 262277, "winner": true },
+        { "name": "Lindsey Simmons", "party": "Democratic", "votes": 132527, "winner": false }
+      ],
+      "totalVotes": 394804,
+      "margin": 0.329
+    },
+    "5": {
+      "year": 2020,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 229142, "winner": true },
+        { "name": "Ryan Derks", "party": "Republican", "votes": 155820, "winner": false }
+      ],
+      "totalVotes": 384962,
+      "margin": -0.190
+    },
+    "6": {
+      "year": 2020,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 272370, "winner": true },
+        { "name": "Gena Ross", "party": "Democratic", "votes": 128098, "winner": false }
+      ],
+      "totalVotes": 400468,
+      "margin": 0.360
+    },
+    "7": {
+      "year": 2020,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 265341, "winner": true },
+        { "name": "Teresa Montseny", "party": "Democratic", "votes": 110927, "winner": false }
+      ],
+      "totalVotes": 376268,
+      "margin": 0.410
+    },
+    "8": {
+      "year": 2020,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 268258, "winner": true },
+        { "name": "Kathy Ellis", "party": "Democratic", "votes": 79612, "winner": false }
+      ],
+      "totalVotes": 347870,
+      "margin": 0.542
+    }
+  }
+}

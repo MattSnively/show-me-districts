@@ -1,0 +1,88 @@
+{
+  "congress": 115,
+  "electionYear": 2016,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2016,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 232532, "winner": true },
+        { "name": "Steven Bailey", "party": "Republican", "votes": 63112, "winner": false }
+      ],
+      "totalVotes": 295644,
+      "margin": -0.573
+    },
+    "2": {
+      "year": 2016,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 268625, "winner": true },
+        { "name": "Bill Otto", "party": "Democratic", "votes": 156856, "winner": false }
+      ],
+      "totalVotes": 425481,
+      "margin": 0.263
+    },
+    "3": {
+      "year": 2016,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 264379, "winner": true },
+        { "name": "Kevin Miller", "party": "Democratic", "votes": 103773, "winner": false }
+      ],
+      "totalVotes": 368152,
+      "margin": 0.436
+    },
+    "4": {
+      "year": 2016,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 262752, "winner": true },
+        { "name": "Gordon Christensen", "party": "Democratic", "votes": 97341, "winner": false }
+      ],
+      "totalVotes": 360093,
+      "margin": 0.459
+    },
+    "5": {
+      "year": 2016,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 203455, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 136992, "winner": false }
+      ],
+      "totalVotes": 340447,
+      "margin": -0.195
+    },
+    "6": {
+      "year": 2016,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 262476, "winner": true },
+        { "name": "J.W. Wickham", "party": "Democratic", "votes": 99765, "winner": false }
+      ],
+      "totalVotes": 362241,
+      "margin": 0.449
+    },
+    "7": {
+      "year": 2016,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 256631, "winner": true },
+        { "name": "Genevieve Williams", "party": "Democratic", "votes": 100714, "winner": false }
+      ],
+      "totalVotes": 357345,
+      "margin": 0.436
+    },
+    "8": {
+      "year": 2016,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 263378, "winner": true },
+        { "name": "Dave Cowell", "party": "Democratic", "votes": 61538, "winner": false }
+      ],
+      "totalVotes": 324916,
+      "margin": 0.621
+    }
+  }
+}

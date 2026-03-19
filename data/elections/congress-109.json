@@ -1,0 +1,98 @@
+{
+  "congress": 109,
+  "electionYear": 2004,
+  "state": "Missouri",
+  "districts": 9,
+  "results": {
+    "1": {
+      "year": 2004,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 213658, "winner": true },
+        { "name": "Leslie Farr", "party": "Republican", "votes": 60538, "winner": false }
+      ],
+      "totalVotes": 274196,
+      "margin": -0.558
+    },
+    "2": {
+      "year": 2004,
+      "district": 2,
+      "candidates": [
+        { "name": "Todd Akin", "party": "Republican", "votes": 228725, "winner": true },
+        { "name": "George Weber", "party": "Democratic", "votes": 120815, "winner": false }
+      ],
+      "totalVotes": 349540,
+      "margin": 0.309
+    },
+    "3": {
+      "year": 2004,
+      "district": 3,
+      "candidates": [
+        { "name": "Russ Carnahan", "party": "Democratic", "votes": 178449, "winner": true },
+        { "name": "Bill Federer", "party": "Republican", "votes": 143202, "winner": false }
+      ],
+      "totalVotes": 321651,
+      "margin": -0.110
+    },
+    "4": {
+      "year": 2004,
+      "district": 4,
+      "candidates": [
+        { "name": "Ike Skelton", "party": "Democratic", "votes": 196916, "winner": true },
+        { "name": "Jim Noland", "party": "Republican", "votes": 135347, "winner": false }
+      ],
+      "totalVotes": 332263,
+      "margin": -0.185
+    },
+    "5": {
+      "year": 2004,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 183283, "winner": true },
+        { "name": "Jeanne Patterson", "party": "Republican", "votes": 119326, "winner": false }
+      ],
+      "totalVotes": 302609,
+      "margin": -0.211
+    },
+    "6": {
+      "year": 2004,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 196916, "winner": true },
+        { "name": "Charles Dempsey", "party": "Democratic", "votes": 110530, "winner": false }
+      ],
+      "totalVotes": 307446,
+      "margin": 0.281
+    },
+    "7": {
+      "year": 2004,
+      "district": 7,
+      "candidates": [
+        { "name": "Roy Blunt", "party": "Republican", "votes": 224174, "winner": true },
+        { "name": "Jim Newberry", "party": "Democratic", "votes": 95429, "winner": false }
+      ],
+      "totalVotes": 319603,
+      "margin": 0.403
+    },
+    "8": {
+      "year": 2004,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 194039, "winner": true },
+        { "name": "Dean Zimmermann", "party": "Democratic", "votes": 65697, "winner": false }
+      ],
+      "totalVotes": 259736,
+      "margin": 0.494
+    },
+    "9": {
+      "year": 2004,
+      "district": 9,
+      "candidates": [
+        { "name": "Kenny Hulshof", "party": "Republican", "votes": 194039, "winner": true },
+        { "name": "Linda Jacobsen", "party": "Democratic", "votes": 109732, "winner": false }
+      ],
+      "totalVotes": 303771,
+      "margin": 0.278
+    }
+  }
+}

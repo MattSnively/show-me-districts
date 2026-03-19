@@ -1,0 +1,89 @@
+{
+  "congress": 113,
+  "electionYear": 2012,
+  "state": "Missouri",
+  "districts": 8,
+  "note": "First election under 8-district map after 2010 census",
+  "results": {
+    "1": {
+      "year": 2012,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 267289, "winner": true },
+        { "name": "Robyn Hamlin", "party": "Republican", "votes": 72854, "winner": false }
+      ],
+      "totalVotes": 340143,
+      "margin": -0.571
+    },
+    "2": {
+      "year": 2012,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 260227, "winner": true },
+        { "name": "Glenn Koenen", "party": "Democratic", "votes": 158918, "winner": false }
+      ],
+      "totalVotes": 419145,
+      "margin": 0.242
+    },
+    "3": {
+      "year": 2012,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 228843, "winner": true },
+        { "name": "Steve Engstrom", "party": "Democratic", "votes": 119571, "winner": false }
+      ],
+      "totalVotes": 348414,
+      "margin": 0.314
+    },
+    "4": {
+      "year": 2012,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 240503, "winner": true },
+        { "name": "Teresa Hensley", "party": "Democratic", "votes": 131658, "winner": false }
+      ],
+      "totalVotes": 372161,
+      "margin": 0.293
+    },
+    "5": {
+      "year": 2012,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 223998, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 147290, "winner": false }
+      ],
+      "totalVotes": 371288,
+      "margin": -0.207
+    },
+    "6": {
+      "year": 2012,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 236487, "winner": true },
+        { "name": "Teresa Hensley", "party": "Democratic", "votes": 130890, "winner": false }
+      ],
+      "totalVotes": 367377,
+      "margin": 0.287
+    },
+    "7": {
+      "year": 2012,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 233507, "winner": true },
+        { "name": "Jim Evans", "party": "Democratic", "votes": 104870, "winner": false }
+      ],
+      "totalVotes": 338377,
+      "margin": 0.380
+    },
+    "8": {
+      "year": 2012,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 229889, "winner": true },
+        { "name": "Dave Cowell", "party": "Democratic", "votes": 72281, "winner": false }
+      ],
+      "totalVotes": 302170,
+      "margin": 0.522
+    }
+  }
+}

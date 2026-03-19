@@ -1,0 +1,98 @@
+{
+  "congress": 110,
+  "electionYear": 2006,
+  "state": "Missouri",
+  "districts": 9,
+  "results": {
+    "1": {
+      "year": 2006,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 142557, "winner": true },
+        { "name": "Mark Byrne", "party": "Republican", "votes": 35014, "winner": false }
+      ],
+      "totalVotes": 177571,
+      "margin": -0.606
+    },
+    "2": {
+      "year": 2006,
+      "district": 2,
+      "candidates": [
+        { "name": "Todd Akin", "party": "Republican", "votes": 182394, "winner": true },
+        { "name": "George Weber", "party": "Democratic", "votes": 114676, "winner": false }
+      ],
+      "totalVotes": 297070,
+      "margin": 0.228
+    },
+    "3": {
+      "year": 2006,
+      "district": 3,
+      "candidates": [
+        { "name": "Russ Carnahan", "party": "Democratic", "votes": 144740, "winner": true },
+        { "name": "David Bertelsen", "party": "Republican", "votes": 104980, "winner": false }
+      ],
+      "totalVotes": 249720,
+      "margin": -0.159
+    },
+    "4": {
+      "year": 2006,
+      "district": 4,
+      "candidates": [
+        { "name": "Ike Skelton", "party": "Democratic", "votes": 158490, "winner": true },
+        { "name": "Jim Noland", "party": "Republican", "votes": 99599, "winner": false }
+      ],
+      "totalVotes": 258089,
+      "margin": -0.228
+    },
+    "5": {
+      "year": 2006,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 139361, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 84434, "winner": false }
+      ],
+      "totalVotes": 223795,
+      "margin": -0.245
+    },
+    "6": {
+      "year": 2006,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 150282, "winner": true },
+        { "name": "Sara Jo Shettles", "party": "Democratic", "votes": 105725, "winner": false }
+      ],
+      "totalVotes": 256007,
+      "margin": 0.174
+    },
+    "7": {
+      "year": 2006,
+      "district": 7,
+      "candidates": [
+        { "name": "Roy Blunt", "party": "Republican", "votes": 164972, "winner": true },
+        { "name": "Jack Truman", "party": "Democratic", "votes": 93478, "winner": false }
+      ],
+      "totalVotes": 258450,
+      "margin": 0.277
+    },
+    "8": {
+      "year": 2006,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 154569, "winner": true },
+        { "name": "Veronica Hambacker", "party": "Democratic", "votes": 52953, "winner": false }
+      ],
+      "totalVotes": 207522,
+      "margin": 0.489
+    },
+    "9": {
+      "year": 2006,
+      "district": 9,
+      "candidates": [
+        { "name": "Kenny Hulshof", "party": "Republican", "votes": 153459, "winner": true },
+        { "name": "Duane Burghard", "party": "Democratic", "votes": 95519, "winner": false }
+      ],
+      "totalVotes": 248978,
+      "margin": 0.233
+    }
+  }
+}

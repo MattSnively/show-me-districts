@@ -1,0 +1,723 @@
+[
+  {
+    "congress": 17,
+    "startYear": 1821,
+    "endYear": 1822,
+    "districts": 1,
+    "file": "congress-017.geojson"
+  },
+  {
+    "congress": 18,
+    "startYear": 1823,
+    "endYear": 1824,
+    "districts": 1,
+    "file": "congress-018.geojson"
+  },
+  {
+    "congress": 19,
+    "startYear": 1825,
+    "endYear": 1826,
+    "districts": 1,
+    "file": "congress-019.geojson"
+  },
+  {
+    "congress": 20,
+    "startYear": 1827,
+    "endYear": 1828,
+    "districts": 1,
+    "file": "congress-020.geojson"
+  },
+  {
+    "congress": 21,
+    "startYear": 1829,
+    "endYear": 1830,
+    "districts": 1,
+    "file": "congress-021.geojson"
+  },
+  {
+    "congress": 22,
+    "startYear": 1831,
+    "endYear": 1832,
+    "districts": 1,
+    "file": "congress-022.geojson"
+  },
+  {
+    "congress": 23,
+    "startYear": 1833,
+    "endYear": 1834,
+    "districts": 1,
+    "file": "congress-023.geojson"
+  },
+  {
+    "congress": 24,
+    "startYear": 1835,
+    "endYear": 1836,
+    "districts": 1,
+    "file": "congress-024.geojson"
+  },
+  {
+    "congress": 25,
+    "startYear": 1837,
+    "endYear": 1838,
+    "districts": 1,
+    "file": "congress-025.geojson"
+  },
+  {
+    "congress": 26,
+    "startYear": 1839,
+    "endYear": 1840,
+    "districts": 1,
+    "file": "congress-026.geojson"
+  },
+  {
+    "congress": 27,
+    "startYear": 1841,
+    "endYear": 1842,
+    "districts": 1,
+    "file": "congress-027.geojson"
+  },
+  {
+    "congress": 28,
+    "startYear": 1843,
+    "endYear": 1844,
+    "districts": 1,
+    "file": "congress-028.geojson"
+  },
+  {
+    "congress": 29,
+    "startYear": 1845,
+    "endYear": 1846,
+    "districts": 1,
+    "file": "congress-029.geojson"
+  },
+  {
+    "congress": 30,
+    "startYear": 1847,
+    "endYear": 1848,
+    "districts": 6,
+    "file": "congress-030.geojson"
+  },
+  {
+    "congress": 31,
+    "startYear": 1849,
+    "endYear": 1850,
+    "districts": 6,
+    "file": "congress-031.geojson"
+  },
+  {
+    "congress": 32,
+    "startYear": 1851,
+    "endYear": 1852,
+    "districts": 6,
+    "file": "congress-032.geojson"
+  },
+  {
+    "congress": 33,
+    "startYear": 1853,
+    "endYear": 1854,
+    "districts": 8,
+    "file": "congress-033.geojson"
+  },
+  {
+    "congress": 34,
+    "startYear": 1855,
+    "endYear": 1856,
+    "districts": 8,
+    "file": "congress-034.geojson"
+  },
+  {
+    "congress": 35,
+    "startYear": 1857,
+    "endYear": 1858,
+    "districts": 8,
+    "file": "congress-035.geojson"
+  },
+  {
+    "congress": 36,
+    "startYear": 1859,
+    "endYear": 1860,
+    "districts": 8,
+    "file": "congress-036.geojson"
+  },
+  {
+    "congress": 37,
+    "startYear": 1861,
+    "endYear": 1862,
+    "districts": 8,
+    "file": "congress-037.geojson"
+  },
+  {
+    "congress": 38,
+    "startYear": 1863,
+    "endYear": 1864,
+    "districts": 10,
+    "file": "congress-038.geojson"
+  },
+  {
+    "congress": 39,
+    "startYear": 1865,
+    "endYear": 1866,
+    "districts": 10,
+    "file": "congress-039.geojson"
+  },
+  {
+    "congress": 40,
+    "startYear": 1867,
+    "endYear": 1868,
+    "districts": 10,
+    "file": "congress-040.geojson"
+  },
+  {
+    "congress": 41,
+    "startYear": 1869,
+    "endYear": 1870,
+    "districts": 10,
+    "file": "congress-041.geojson"
+  },
+  {
+    "congress": 42,
+    "startYear": 1871,
+    "endYear": 1872,
+    "districts": 10,
+    "file": "congress-042.geojson"
+  },
+  {
+    "congress": 43,
+    "startYear": 1873,
+    "endYear": 1874,
+    "districts": 14,
+    "file": "congress-043.geojson"
+  },
+  {
+    "congress": 44,
+    "startYear": 1875,
+    "endYear": 1876,
+    "districts": 14,
+    "file": "congress-044.geojson"
+  },
+  {
+    "congress": 45,
+    "startYear": 1877,
+    "endYear": 1878,
+    "districts": 14,
+    "file": "congress-045.geojson"
+  },
+  {
+    "congress": 46,
+    "startYear": 1879,
+    "endYear": 1880,
+    "districts": 14,
+    "file": "congress-046.geojson"
+  },
+  {
+    "congress": 47,
+    "startYear": 1881,
+    "endYear": 1882,
+    "districts": 14,
+    "file": "congress-047.geojson"
+  },
+  {
+    "congress": 48,
+    "startYear": 1883,
+    "endYear": 1884,
+    "districts": 15,
+    "file": "congress-048.geojson"
+  },
+  {
+    "congress": 49,
+    "startYear": 1885,
+    "endYear": 1886,
+    "districts": 15,
+    "file": "congress-049.geojson"
+  },
+  {
+    "congress": 50,
+    "startYear": 1887,
+    "endYear": 1888,
+    "districts": 15,
+    "file": "congress-050.geojson"
+  },
+  {
+    "congress": 51,
+    "startYear": 1889,
+    "endYear": 1890,
+    "districts": 15,
+    "file": "congress-051.geojson"
+  },
+  {
+    "congress": 52,
+    "startYear": 1891,
+    "endYear": 1892,
+    "districts": 15,
+    "file": "congress-052.geojson"
+  },
+  {
+    "congress": 53,
+    "startYear": 1893,
+    "endYear": 1894,
+    "districts": 16,
+    "file": "congress-053.geojson"
+  },
+  {
+    "congress": 54,
+    "startYear": 1895,
+    "endYear": 1896,
+    "districts": 16,
+    "file": "congress-054.geojson"
+  },
+  {
+    "congress": 55,
+    "startYear": 1897,
+    "endYear": 1898,
+    "districts": 16,
+    "file": "congress-055.geojson"
+  },
+  {
+    "congress": 56,
+    "startYear": 1899,
+    "endYear": 1900,
+    "districts": 16,
+    "file": "congress-056.geojson"
+  },
+  {
+    "congress": 57,
+    "startYear": 1901,
+    "endYear": 1902,
+    "districts": 16,
+    "file": "congress-057.geojson"
+  },
+  {
+    "congress": 58,
+    "startYear": 1903,
+    "endYear": 1904,
+    "districts": 17,
+    "file": "congress-058.geojson"
+  },
+  {
+    "congress": 59,
+    "startYear": 1905,
+    "endYear": 1906,
+    "districts": 17,
+    "file": "congress-059.geojson"
+  },
+  {
+    "congress": 60,
+    "startYear": 1907,
+    "endYear": 1908,
+    "districts": 17,
+    "file": "congress-060.geojson"
+  },
+  {
+    "congress": 61,
+    "startYear": 1909,
+    "endYear": 1910,
+    "districts": 17,
+    "file": "congress-061.geojson"
+  },
+  {
+    "congress": 62,
+    "startYear": 1911,
+    "endYear": 1912,
+    "districts": 17,
+    "file": "congress-062.geojson"
+  },
+  {
+    "congress": 63,
+    "startYear": 1913,
+    "endYear": 1914,
+    "districts": 17,
+    "file": "congress-063.geojson"
+  },
+  {
+    "congress": 64,
+    "startYear": 1915,
+    "endYear": 1916,
+    "districts": 17,
+    "file": "congress-064.geojson"
+  },
+  {
+    "congress": 65,
+    "startYear": 1917,
+    "endYear": 1918,
+    "districts": 17,
+    "file": "congress-065.geojson"
+  },
+  {
+    "congress": 66,
+    "startYear": 1919,
+    "endYear": 1920,
+    "districts": 17,
+    "file": "congress-066.geojson"
+  },
+  {
+    "congress": 67,
+    "startYear": 1921,
+    "endYear": 1922,
+    "districts": 17,
+    "file": "congress-067.geojson"
+  },
+  {
+    "congress": 68,
+    "startYear": 1923,
+    "endYear": 1924,
+    "districts": 17,
+    "file": "congress-068.geojson"
+  },
+  {
+    "congress": 69,
+    "startYear": 1925,
+    "endYear": 1926,
+    "districts": 17,
+    "file": "congress-069.geojson"
+  },
+  {
+    "congress": 70,
+    "startYear": 1927,
+    "endYear": 1928,
+    "districts": 17,
+    "file": "congress-070.geojson"
+  },
+  {
+    "congress": 71,
+    "startYear": 1929,
+    "endYear": 1930,
+    "districts": 17,
+    "file": "congress-071.geojson"
+  },
+  {
+    "congress": 72,
+    "startYear": 1931,
+    "endYear": 1932,
+    "districts": 17,
+    "file": "congress-072.geojson"
+  },
+  {
+    "congress": 73,
+    "startYear": 1933,
+    "endYear": 1934,
+    "districts": 1,
+    "file": "congress-073.geojson"
+  },
+  {
+    "congress": 74,
+    "startYear": 1935,
+    "endYear": 1936,
+    "districts": 13,
+    "file": "congress-074.geojson"
+  },
+  {
+    "congress": 75,
+    "startYear": 1937,
+    "endYear": 1938,
+    "districts": 13,
+    "file": "congress-075.geojson"
+  },
+  {
+    "congress": 76,
+    "startYear": 1939,
+    "endYear": 1940,
+    "districts": 13,
+    "file": "congress-076.geojson"
+  },
+  {
+    "congress": 77,
+    "startYear": 1941,
+    "endYear": 1942,
+    "districts": 13,
+    "file": "congress-077.geojson"
+  },
+  {
+    "congress": 78,
+    "startYear": 1943,
+    "endYear": 1944,
+    "districts": 13,
+    "file": "congress-078.geojson"
+  },
+  {
+    "congress": 79,
+    "startYear": 1945,
+    "endYear": 1946,
+    "districts": 13,
+    "file": "congress-079.geojson"
+  },
+  {
+    "congress": 80,
+    "startYear": 1947,
+    "endYear": 1948,
+    "districts": 13,
+    "file": "congress-080.geojson"
+  },
+  {
+    "congress": 81,
+    "startYear": 1949,
+    "endYear": 1950,
+    "districts": 13,
+    "file": "congress-081.geojson"
+  },
+  {
+    "congress": 82,
+    "startYear": 1951,
+    "endYear": 1952,
+    "districts": 13,
+    "file": "congress-082.geojson"
+  },
+  {
+    "congress": 83,
+    "startYear": 1953,
+    "endYear": 1954,
+    "districts": 11,
+    "file": "congress-083.geojson"
+  },
+  {
+    "congress": 84,
+    "startYear": 1955,
+    "endYear": 1956,
+    "districts": 11,
+    "file": "congress-084.geojson"
+  },
+  {
+    "congress": 85,
+    "startYear": 1957,
+    "endYear": 1958,
+    "districts": 11,
+    "file": "congress-085.geojson"
+  },
+  {
+    "congress": 86,
+    "startYear": 1959,
+    "endYear": 1960,
+    "districts": 11,
+    "file": "congress-086.geojson"
+  },
+  {
+    "congress": 87,
+    "startYear": 1961,
+    "endYear": 1962,
+    "districts": 11,
+    "file": "congress-087.geojson"
+  },
+  {
+    "congress": 88,
+    "startYear": 1963,
+    "endYear": 1964,
+    "districts": 10,
+    "file": "congress-088.geojson"
+  },
+  {
+    "congress": 89,
+    "startYear": 1965,
+    "endYear": 1966,
+    "districts": 10,
+    "file": "congress-089.geojson"
+  },
+  {
+    "congress": 90,
+    "startYear": 1967,
+    "endYear": 1968,
+    "districts": 10,
+    "file": "congress-090.geojson"
+  },
+  {
+    "congress": 91,
+    "startYear": 1969,
+    "endYear": 1970,
+    "districts": 10,
+    "file": "congress-091.geojson"
+  },
+  {
+    "congress": 92,
+    "startYear": 1971,
+    "endYear": 1972,
+    "districts": 10,
+    "file": "congress-092.geojson"
+  },
+  {
+    "congress": 93,
+    "startYear": 1973,
+    "endYear": 1974,
+    "districts": 10,
+    "file": "congress-093.geojson"
+  },
+  {
+    "congress": 94,
+    "startYear": 1975,
+    "endYear": 1976,
+    "districts": 10,
+    "file": "congress-094.geojson"
+  },
+  {
+    "congress": 95,
+    "startYear": 1977,
+    "endYear": 1978,
+    "districts": 10,
+    "file": "congress-095.geojson"
+  },
+  {
+    "congress": 96,
+    "startYear": 1979,
+    "endYear": 1980,
+    "districts": 10,
+    "file": "congress-096.geojson"
+  },
+  {
+    "congress": 97,
+    "startYear": 1981,
+    "endYear": 1982,
+    "districts": 10,
+    "file": "congress-097.geojson"
+  },
+  {
+    "congress": 98,
+    "startYear": 1983,
+    "endYear": 1984,
+    "districts": 9,
+    "file": "congress-098.geojson"
+  },
+  {
+    "congress": 99,
+    "startYear": 1985,
+    "endYear": 1986,
+    "districts": 9,
+    "file": "congress-099.geojson"
+  },
+  {
+    "congress": 100,
+    "startYear": 1987,
+    "endYear": 1988,
+    "districts": 9,
+    "file": "congress-100.geojson"
+  },
+  {
+    "congress": 101,
+    "startYear": 1989,
+    "endYear": 1990,
+    "districts": 9,
+    "file": "congress-101.geojson"
+  },
+  {
+    "congress": 102,
+    "startYear": 1991,
+    "endYear": 1992,
+    "districts": 9,
+    "file": "congress-102.geojson"
+  },
+  {
+    "congress": 103,
+    "startYear": 1993,
+    "endYear": 1994,
+    "districts": 9,
+    "file": "congress-103.geojson"
+  },
+  {
+    "congress": 104,
+    "startYear": 1995,
+    "endYear": 1996,
+    "districts": 9,
+    "file": "congress-104.geojson"
+  },
+  {
+    "congress": 105,
+    "startYear": 1997,
+    "endYear": 1998,
+    "districts": 9,
+    "file": "congress-105.geojson"
+  },
+  {
+    "congress": 106,
+    "startYear": 1999,
+    "endYear": 2000,
+    "districts": 9,
+    "file": "congress-106.geojson"
+  },
+  {
+    "congress": 107,
+    "startYear": 2001,
+    "endYear": 2002,
+    "districts": 9,
+    "file": "congress-107.geojson"
+  },
+  {
+    "congress": 108,
+    "startYear": 2003,
+    "endYear": 2004,
+    "districts": 9,
+    "file": "congress-108.geojson"
+  },
+  {
+    "congress": 109,
+    "startYear": 2005,
+    "endYear": 2006,
+    "districts": 9,
+    "file": "congress-109.geojson"
+  },
+  {
+    "congress": 110,
+    "startYear": 2007,
+    "endYear": 2008,
+    "districts": 9,
+    "file": "congress-110.geojson"
+  },
+  {
+    "congress": 111,
+    "startYear": 2009,
+    "endYear": 2010,
+    "districts": 9,
+    "file": "congress-111.geojson"
+  },
+  {
+    "congress": 112,
+    "startYear": 2011,
+    "endYear": 2012,
+    "districts": 9,
+    "file": "congress-112.geojson"
+  },
+  {
+    "congress": 113,
+    "startYear": 2013,
+    "endYear": 2014,
+    "districts": 8,
+    "file": "congress-113.geojson"
+  },
+  {
+    "congress": 114,
+    "startYear": 2015,
+    "endYear": 2016,
+    "districts": 8,
+    "file": "congress-114.geojson"
+  },
+  {
+    "congress": 115,
+    "startYear": 2017,
+    "endYear": 2018,
+    "districts": 8,
+    "file": "congress-115.geojson"
+  },
+  {
+    "congress": 116,
+    "startYear": 2019,
+    "endYear": 2020,
+    "districts": 8,
+    "file": "congress-116.geojson"
+  },
+  {
+    "congress": 117,
+    "startYear": 2021,
+    "endYear": 2022,
+    "districts": 8,
+    "file": "congress-117.geojson"
+  },
+  {
+    "congress": 118,
+    "startYear": 2023,
+    "endYear": 2024,
+    "districts": 8,
+    "file": "congress-118.geojson"
+  },
+  {
+    "congress": 119,
+    "startYear": 2025,
+    "endYear": 2026,
+    "districts": 8,
+    "file": "congress-119.geojson"
+  }
+]

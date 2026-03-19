@@ -1,0 +1,88 @@
+{
+  "congress": 114,
+  "electionYear": 2014,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2014,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 158593, "winner": true },
+        { "name": "Daniel Elder", "party": "Republican", "votes": 43753, "winner": false }
+      ],
+      "totalVotes": 202346,
+      "margin": -0.568
+    },
+    "2": {
+      "year": 2014,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 195498, "winner": true },
+        { "name": "Arthur Lieber", "party": "Democratic", "votes": 108981, "winner": false }
+      ],
+      "totalVotes": 304479,
+      "margin": 0.284
+    },
+    "3": {
+      "year": 2014,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 172651, "winner": true },
+        { "name": "Courtney Curtis", "party": "Democratic", "votes": 67905, "winner": false }
+      ],
+      "totalVotes": 240556,
+      "margin": 0.435
+    },
+    "4": {
+      "year": 2014,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 171139, "winner": true },
+        { "name": "Nate Irvin", "party": "Democratic", "votes": 59920, "winner": false }
+      ],
+      "totalVotes": 231059,
+      "margin": 0.481
+    },
+    "5": {
+      "year": 2014,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 130804, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 94654, "winner": false }
+      ],
+      "totalVotes": 225458,
+      "margin": -0.160
+    },
+    "6": {
+      "year": 2014,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 168426, "winner": true },
+        { "name": "W. Wayne Wallingford", "party": "Democratic", "votes": 63506, "winner": false }
+      ],
+      "totalVotes": 231932,
+      "margin": 0.452
+    },
+    "7": {
+      "year": 2014,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 165636, "winner": true },
+        { "name": "Jim Evans", "party": "Democratic", "votes": 64628, "winner": false }
+      ],
+      "totalVotes": 230264,
+      "margin": 0.439
+    },
+    "8": {
+      "year": 2014,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 164426, "winner": true },
+        { "name": "Barbara Hamill", "party": "Democratic", "votes": 43127, "winner": false }
+      ],
+      "totalVotes": 207553,
+      "margin": 0.585
+    }
+  }
+}

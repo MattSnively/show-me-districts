@@ -1,11 +1,15 @@
 /**
- * extract-missouri.js — Filters Missouri features (FIPS code 29) from the
- * UCLA national congressional district GeoJSON files.
+ * extract-missouri.js — Builds per-congress GeoJSON files from the UCLA
+ * Missouri range files downloaded by download-historical.js.
  *
- * Usage: node scripts/extract-missouri.js <input-dir> <output-dir>
+ * UCLA files cover congress ranges (e.g., Missouri_022_to_073.geojson contains
+ * districts valid for congresses 22 through 73). To reconstruct what Missouri
+ * looked like for a specific congress, we merge all features whose
+ * [startcong, endcong] range includes that congress number.
  *
- * Input:  UCLA congressional-district-boundaries repo (GeoJSON by congress number)
- * Output: data/historical/ directory with MO-only GeoJSON files per congress
+ * Usage: node scripts/extract-missouri.js
+ * Input:  data/historical/raw/ (downloaded UCLA files)
+ * Output: data/historical/congress-{NNN}.geojson (one file per congress)
  *
  * Phase 1a data pipeline script — not shipped to production.
  */
@@ -13,52 +17,106 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
-/** Missouri FIPS state code */
-const MO_FIPS = '29';
+const RAW_DIR = 'data/historical/raw';
+const OUTPUT_DIR = 'data/historical';
+
+/** Missouri's first congress (admitted 1821) through current */
+const FIRST_CONGRESS = 17;
+const LAST_CONGRESS = 119;
 
 /**
- * Extracts Missouri features from a national GeoJSON FeatureCollection.
- * Matches on STATEFP, STATEFP20, or state_fips properties.
+ * Parses a UCLA range filename to extract start and end congress numbers.
+ * Format: "Missouri_017_to_021.geojson" → { start: 17, end: 21 }
  */
-function extractMissouri(geojson) {
-  const moFeatures = geojson.features.filter((f) => {
-    const props = f.properties || {};
-    const fips = props.STATEFP || props.STATEFP20 || props.state_fips || props.STATEFP10 || '';
-    return String(fips) === MO_FIPS;
-  });
+function parseRange(filename) {
+  const match = filename.match(/Missouri_(\d+)_to_(\d+)/);
+  if (!match) return null;
+  return { start: parseInt(match[1], 10), end: parseInt(match[2], 10) };
+}
+
+/**
+ * Loads all raw Missouri GeoJSON files and indexes their features by
+ * the congress range each feature is valid for.
+ * Returns an array of { startcong, endcong, feature } entries.
+ */
+function loadAllFeatures() {
+  const files = readdirSync(RAW_DIR).filter((f) => f.endsWith('.geojson'));
+  const allFeatures = [];
+
+  for (const file of files) {
+    const raw = readFileSync(join(RAW_DIR, file), 'utf-8');
+    const geojson = JSON.parse(raw);
+
+    for (const feature of geojson.features) {
+      const props = feature.properties || {};
+      /* Use feature-level congress range (more precise than filename range) */
+      const startcong = parseInt(props.startcong, 10);
+      const endcong = parseInt(props.endcong, 10);
+
+      if (!isNaN(startcong) && !isNaN(endcong)) {
+        allFeatures.push({ startcong, endcong, feature });
+      }
+    }
+  }
+
+  console.log(`Loaded ${allFeatures.length} total features from ${files.length} files\n`);
+  return allFeatures;
+}
+
+/**
+ * For a given congress number, collects all features whose range includes it.
+ * Returns a GeoJSON FeatureCollection with congress metadata.
+ */
+function buildCongressGeoJSON(congressNum, allFeatures) {
+  const matching = allFeatures
+    .filter((entry) => entry.startcong <= congressNum && entry.endcong >= congressNum)
+    .map((entry) => ({
+      ...entry.feature,
+      properties: {
+        ...entry.feature.properties,
+        /* Normalize district number for consistent access */
+        districtNum: parseInt(entry.feature.properties?.district, 10) || 0,
+      },
+    }));
 
   return {
     type: 'FeatureCollection',
-    features: moFeatures,
+    properties: {
+      state: 'Missouri',
+      congress: congressNum,
+      districtCount: matching.length,
+    },
+    features: matching,
   };
 }
 
 /* Main execution */
-const inputDir = process.argv[2];
-const outputDir = process.argv[3] || 'data/historical';
+function main() {
+  mkdirSync(OUTPUT_DIR, { recursive: true });
 
-if (!inputDir) {
-  console.error('Usage: node scripts/extract-missouri.js <input-dir> [output-dir]');
-  process.exit(1);
-}
+  const allFeatures = loadAllFeatures();
+  let fileCount = 0;
+  let emptyCount = 0;
 
-mkdirSync(outputDir, { recursive: true });
+  for (let congress = FIRST_CONGRESS; congress <= LAST_CONGRESS; congress++) {
+    const geojson = buildCongressGeoJSON(congress, allFeatures);
 
-const files = readdirSync(inputDir).filter((f) => f.endsWith('.geojson') || f.endsWith('.json'));
-console.log(`Found ${files.length} GeoJSON files in ${inputDir}`);
+    if (geojson.features.length === 0) {
+      emptyCount++;
+      continue;
+    }
 
-for (const file of files) {
-  const raw = readFileSync(join(inputDir, file), 'utf-8');
-  const geojson = JSON.parse(raw);
-  const moData = extractMissouri(geojson);
+    const filename = `congress-${String(congress).padStart(3, '0')}.geojson`;
+    const outPath = join(OUTPUT_DIR, filename);
+    writeFileSync(outPath, JSON.stringify(geojson));
+    fileCount++;
 
-  if (moData.features.length > 0) {
-    const outPath = join(outputDir, file);
-    writeFileSync(outPath, JSON.stringify(moData));
-    console.log(`  ${file}: ${moData.features.length} MO features`);
-  } else {
-    console.log(`  ${file}: no MO features found, skipping`);
+    console.log(
+      `  ${filename}: ${geojson.features.length} districts`
+    );
   }
+
+  console.log(`\nWrote ${fileCount} congress files (${emptyCount} empty congresses skipped)`);
 }
 
-console.log('Done.');
+main();

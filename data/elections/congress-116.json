@@ -1,0 +1,88 @@
+{
+  "congress": 116,
+  "electionYear": 2018,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2018,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 214432, "winner": true },
+        { "name": "Robert Vroman", "party": "Republican", "votes": 55826, "winner": false }
+      ],
+      "totalVotes": 270258,
+      "margin": -0.587
+    },
+    "2": {
+      "year": 2018,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 203371, "winner": true },
+        { "name": "Cort VanOstran", "party": "Democratic", "votes": 183765, "winner": false }
+      ],
+      "totalVotes": 387136,
+      "margin": 0.051
+    },
+    "3": {
+      "year": 2018,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 209747, "winner": true },
+        { "name": "Katy Geppert", "party": "Democratic", "votes": 120963, "winner": false }
+      ],
+      "totalVotes": 330710,
+      "margin": 0.268
+    },
+    "4": {
+      "year": 2018,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 195569, "winner": true },
+        { "name": "Lauren Arthur", "party": "Democratic", "votes": 109936, "winner": false }
+      ],
+      "totalVotes": 305505,
+      "margin": 0.280
+    },
+    "5": {
+      "year": 2018,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 187497, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 118714, "winner": false }
+      ],
+      "totalVotes": 306211,
+      "margin": -0.225
+    },
+    "6": {
+      "year": 2018,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 202870, "winner": true },
+        { "name": "Henry Martin", "party": "Democratic", "votes": 112340, "winner": false }
+      ],
+      "totalVotes": 315210,
+      "margin": 0.287
+    },
+    "7": {
+      "year": 2018,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 201742, "winner": true },
+        { "name": "Jamie Schoolcraft", "party": "Democratic", "votes": 108207, "winner": false }
+      ],
+      "totalVotes": 309949,
+      "margin": 0.302
+    },
+    "8": {
+      "year": 2018,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 211708, "winner": true },
+        { "name": "Kathy Ellis", "party": "Democratic", "votes": 65918, "winner": false }
+      ],
+      "totalVotes": 277626,
+      "margin": 0.525
+    }
+  }
+}

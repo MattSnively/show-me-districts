@@ -1,0 +1,99 @@
+{
+  "congress": 112,
+  "electionYear": 2010,
+  "state": "Missouri",
+  "districts": 9,
+  "note": "Last election under 9-district map. Missouri lost a seat after 2010 census.",
+  "results": {
+    "1": {
+      "year": 2010,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 152620, "winner": true },
+        { "name": "Robyn Hamlin", "party": "Republican", "votes": 55246, "winner": false }
+      ],
+      "totalVotes": 207866,
+      "margin": -0.468
+    },
+    "2": {
+      "year": 2010,
+      "district": 2,
+      "candidates": [
+        { "name": "Todd Akin", "party": "Republican", "votes": 211532, "winner": true },
+        { "name": "Arthur Lieber", "party": "Democratic", "votes": 111292, "winner": false }
+      ],
+      "totalVotes": 322824,
+      "margin": 0.311
+    },
+    "3": {
+      "year": 2010,
+      "district": 3,
+      "candidates": [
+        { "name": "Russ Carnahan", "party": "Democratic", "votes": 138211, "winner": true },
+        { "name": "Ed Martin", "party": "Republican", "votes": 133469, "winner": false }
+      ],
+      "totalVotes": 271680,
+      "margin": -0.017
+    },
+    "4": {
+      "year": 2010,
+      "district": 4,
+      "candidates": [
+        { "name": "Vicky Hartzler", "party": "Republican", "votes": 192708, "winner": true },
+        { "name": "Ike Skelton", "party": "Democratic", "votes": 146936, "winner": false }
+      ],
+      "totalVotes": 339644,
+      "margin": 0.135
+    },
+    "5": {
+      "year": 2010,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 137175, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 120840, "winner": false }
+      ],
+      "totalVotes": 258015,
+      "margin": -0.063
+    },
+    "6": {
+      "year": 2010,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 180660, "winner": true },
+        { "name": "Clint Hylton", "party": "Democratic", "votes": 93389, "winner": false }
+      ],
+      "totalVotes": 274049,
+      "margin": 0.318
+    },
+    "7": {
+      "year": 2010,
+      "district": 7,
+      "candidates": [
+        { "name": "Billy Long", "party": "Republican", "votes": 186181, "winner": true },
+        { "name": "Scott Eckersley", "party": "Democratic", "votes": 82447, "winner": false }
+      ],
+      "totalVotes": 268628,
+      "margin": 0.386
+    },
+    "8": {
+      "year": 2010,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 168296, "winner": true },
+        { "name": "Tommy Sowers", "party": "Democratic", "votes": 79048, "winner": false }
+      ],
+      "totalVotes": 247344,
+      "margin": 0.361
+    },
+    "9": {
+      "year": 2010,
+      "district": 9,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 175780, "winner": true },
+        { "name": "Rick Monroe", "party": "Democratic", "votes": 97009, "winner": false }
+      ],
+      "totalVotes": 272789,
+      "margin": 0.289
+    }
+  }
+}

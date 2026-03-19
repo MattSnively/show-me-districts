@@ -1,0 +1,98 @@
+{
+  "congress": 111,
+  "electionYear": 2008,
+  "state": "Missouri",
+  "districts": 9,
+  "results": {
+    "1": {
+      "year": 2008,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 241526, "winner": true },
+        { "name": "Robyn Hamlin", "party": "Republican", "votes": 47037, "winner": false }
+      ],
+      "totalVotes": 288563,
+      "margin": -0.674
+    },
+    "2": {
+      "year": 2008,
+      "district": 2,
+      "candidates": [
+        { "name": "Todd Akin", "party": "Republican", "votes": 233507, "winner": true },
+        { "name": "Bill Haas", "party": "Democratic", "votes": 143279, "winner": false }
+      ],
+      "totalVotes": 376786,
+      "margin": 0.240
+    },
+    "3": {
+      "year": 2008,
+      "district": 3,
+      "candidates": [
+        { "name": "Russ Carnahan", "party": "Democratic", "votes": 200991, "winner": true },
+        { "name": "Chris Sander", "party": "Republican", "votes": 129527, "winner": false }
+      ],
+      "totalVotes": 330518,
+      "margin": -0.216
+    },
+    "4": {
+      "year": 2008,
+      "district": 4,
+      "candidates": [
+        { "name": "Ike Skelton", "party": "Democratic", "votes": 195412, "winner": true },
+        { "name": "Jeff Parnell", "party": "Republican", "votes": 145555, "winner": false }
+      ],
+      "totalVotes": 340967,
+      "margin": -0.146
+    },
+    "5": {
+      "year": 2008,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 199521, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 111958, "winner": false }
+      ],
+      "totalVotes": 311479,
+      "margin": -0.281
+    },
+    "6": {
+      "year": 2008,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 192205, "winner": true },
+        { "name": "Kay Barnes", "party": "Democratic", "votes": 161365, "winner": false }
+      ],
+      "totalVotes": 353570,
+      "margin": 0.087
+    },
+    "7": {
+      "year": 2008,
+      "district": 7,
+      "candidates": [
+        { "name": "Roy Blunt", "party": "Republican", "votes": 216436, "winner": true },
+        { "name": "Richard Monroe", "party": "Democratic", "votes": 104357, "winner": false }
+      ],
+      "totalVotes": 320793,
+      "margin": 0.349
+    },
+    "8": {
+      "year": 2008,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 196994, "winner": true },
+        { "name": "Joe Allen", "party": "Democratic", "votes": 80328, "winner": false }
+      ],
+      "totalVotes": 277322,
+      "margin": 0.421
+    },
+    "9": {
+      "year": 2008,
+      "district": 9,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 183178, "winner": true },
+        { "name": "Judy Baker", "party": "Democratic", "votes": 160669, "winner": false }
+      ],
+      "totalVotes": 343847,
+      "margin": 0.065
+    }
+  }
+}

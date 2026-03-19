@@ -1,4 +1,21 @@
 {
   "description": "Metadata for curated and algorithm-generated district plans. Each entry includes metric scores for gallery display and comparison.",
-  "plans": []
+  "baseline": {
+    "id": "enacted-2022",
+    "title": "Current Enacted Map (2022)",
+    "source": "Missouri General Assembly",
+    "year": 2022,
+    "districts": 8,
+    "geoFile": "../census/mo-cd-current.geojson",
+    "metrics": {
+      "polsbyPopper": null,
+      "reock": null,
+      "populationDeviation": null,
+      "efficiencyGap": null,
+      "meanMedian": null
+    },
+    "note": "Baseline for comparison. Metrics to be computed after data pipeline is complete."
+  },
+  "plans": [],
+  "note": "Community-created plans will be added here as they are sourced from Dave's Redistricting App and other tools. Each plan will include a GeoJSON file path and pre-computed metric scores."
 }

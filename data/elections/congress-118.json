@@ -1,0 +1,88 @@
+{
+  "congress": 118,
+  "electionYear": 2022,
+  "state": "Missouri",
+  "districts": 8,
+  "results": {
+    "1": {
+      "year": 2022,
+      "district": 1,
+      "candidates": [
+        { "name": "Cori Bush", "party": "Democratic", "votes": 195381, "winner": true },
+        { "name": "Andrew Jones", "party": "Republican", "votes": 70597, "winner": false }
+      ],
+      "totalVotes": 265978,
+      "margin": -0.469
+    },
+    "2": {
+      "year": 2022,
+      "district": 2,
+      "candidates": [
+        { "name": "Ann Wagner", "party": "Republican", "votes": 230095, "winner": true },
+        { "name": "Trish Gunby", "party": "Democratic", "votes": 175839, "winner": false }
+      ],
+      "totalVotes": 405934,
+      "margin": 0.134
+    },
+    "3": {
+      "year": 2022,
+      "district": 3,
+      "candidates": [
+        { "name": "Blaine Luetkemeyer", "party": "Republican", "votes": 233168, "winner": true },
+        { "name": "Bethany Mann", "party": "Democratic", "votes": 99072, "winner": false }
+      ],
+      "totalVotes": 332240,
+      "margin": 0.404
+    },
+    "4": {
+      "year": 2022,
+      "district": 4,
+      "candidates": [
+        { "name": "Mark Alford", "party": "Republican", "votes": 221671, "winner": true },
+        { "name": "Jack Truman", "party": "Democratic", "votes": 82458, "winner": false }
+      ],
+      "totalVotes": 304129,
+      "margin": 0.457
+    },
+    "5": {
+      "year": 2022,
+      "district": 5,
+      "candidates": [
+        { "name": "Emanuel Cleaver", "party": "Democratic", "votes": 177920, "winner": true },
+        { "name": "Jacob Turk", "party": "Republican", "votes": 131523, "winner": false }
+      ],
+      "totalVotes": 309443,
+      "margin": -0.150
+    },
+    "6": {
+      "year": 2022,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 238539, "winner": true },
+        { "name": "Henry Martin", "party": "Democratic", "votes": 91157, "winner": false }
+      ],
+      "totalVotes": 329696,
+      "margin": 0.447
+    },
+    "7": {
+      "year": 2022,
+      "district": 7,
+      "candidates": [
+        { "name": "Eric Burlison", "party": "Republican", "votes": 232870, "winner": true },
+        { "name": "Kristen Radaker-Sheafer", "party": "Democratic", "votes": 76613, "winner": false }
+      ],
+      "totalVotes": 309483,
+      "margin": 0.505
+    },
+    "8": {
+      "year": 2022,
+      "district": 8,
+      "candidates": [
+        { "name": "Jason Smith", "party": "Republican", "votes": 219547, "winner": true },
+        { "name": "Randi McCallian", "party": "Democratic", "votes": 53459, "winner": false }
+      ],
+      "totalVotes": 273006,
+      "margin": 0.608
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "description": "Index of available Missouri congressional election data files. Each entry maps a congress number to the election year and district count.",
+  "elections": [
+    { "congress": 108, "year": 2002, "districts": 9, "file": "congress-108.json" },
+    { "congress": 109, "year": 2004, "districts": 9, "file": "congress-109.json" },
+    { "congress": 110, "year": 2006, "districts": 9, "file": "congress-110.json" },
+    { "congress": 111, "year": 2008, "districts": 9, "file": "congress-111.json" },
+    { "congress": 112, "year": 2010, "districts": 9, "file": "congress-112.json" },
+    { "congress": 113, "year": 2012, "districts": 8, "file": "congress-113.json" },
+    { "congress": 114, "year": 2014, "districts": 8, "file": "congress-114.json" },
+    { "congress": 115, "year": 2016, "districts": 8, "file": "congress-115.json" },
+    { "congress": 116, "year": 2018, "districts": 8, "file": "congress-116.json" },
+    { "congress": 117, "year": 2020, "districts": 8, "file": "congress-117.json" },
+    { "congress": 118, "year": 2022, "districts": 8, "file": "congress-118.json" },
+    { "congress": 119, "year": 2024, "districts": 8, "file": "congress-119.json" }
+  ],
+  "note": "Election data before the 108th Congress (2002) is not yet compiled. Historical boundary data is available but without election overlays for those eras."
+}

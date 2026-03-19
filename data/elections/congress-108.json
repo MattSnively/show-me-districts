@@ -1,0 +1,99 @@
+{
+  "congress": 108,
+  "electionYear": 2002,
+  "state": "Missouri",
+  "districts": 9,
+  "note": "First election under 9-district map after 2000 census",
+  "results": {
+    "1": {
+      "year": 2002,
+      "district": 1,
+      "candidates": [
+        { "name": "Lacy Clay", "party": "Democratic", "votes": 132817, "winner": true },
+        { "name": "Richard Gephardt Jr.", "party": "Republican", "votes": 31543, "winner": false }
+      ],
+      "totalVotes": 164360,
+      "margin": -0.616
+    },
+    "2": {
+      "year": 2002,
+      "district": 2,
+      "candidates": [
+        { "name": "Todd Akin", "party": "Republican", "votes": 167057, "winner": true },
+        { "name": "John Hogan", "party": "Democratic", "votes": 88104, "winner": false }
+      ],
+      "totalVotes": 255161,
+      "margin": 0.310
+    },
+    "3": {
+      "year": 2002,
+      "district": 3,
+      "candidates": [
+        { "name": "Richard Gephardt", "party": "Democratic", "votes": 120521, "winner": true },
+        { "name": "Catherine Enz", "party": "Republican", "votes": 64531, "winner": false }
+      ],
+      "totalVotes": 185052,
+      "margin": -0.303
+    },
+    "4": {
+      "year": 2002,
+      "district": 4,
+      "candidates": [
+        { "name": "Ike Skelton", "party": "Democratic", "votes": 142784, "winner": true },
+        { "name": "Jim Noland", "party": "Republican", "votes": 112649, "winner": false }
+      ],
+      "totalVotes": 255433,
+      "margin": -0.118
+    },
+    "5": {
+      "year": 2002,
+      "district": 5,
+      "candidates": [
+        { "name": "Karen McCarthy", "party": "Democratic", "votes": 116543, "winner": true },
+        { "name": "Steve Gordon", "party": "Republican", "votes": 72732, "winner": false }
+      ],
+      "totalVotes": 189275,
+      "margin": -0.232
+    },
+    "6": {
+      "year": 2002,
+      "district": 6,
+      "candidates": [
+        { "name": "Sam Graves", "party": "Republican", "votes": 131151, "winner": true },
+        { "name": "Chet Hardin", "party": "Democratic", "votes": 79997, "winner": false }
+      ],
+      "totalVotes": 211148,
+      "margin": 0.242
+    },
+    "7": {
+      "year": 2002,
+      "district": 7,
+      "candidates": [
+        { "name": "Roy Blunt", "party": "Republican", "votes": 156238, "winner": true },
+        { "name": "Ron Lapham", "party": "Democratic", "votes": 73202, "winner": false }
+      ],
+      "totalVotes": 229440,
+      "margin": 0.362
+    },
+    "8": {
+      "year": 2002,
+      "district": 8,
+      "candidates": [
+        { "name": "Jo Ann Emerson", "party": "Republican", "votes": 135144, "winner": true },
+        { "name": "Gene Curtis", "party": "Democratic", "votes": 48517, "winner": false }
+      ],
+      "totalVotes": 183661,
+      "margin": 0.472
+    },
+    "9": {
+      "year": 2002,
+      "district": 9,
+      "candidates": [
+        { "name": "Kenny Hulshof", "party": "Republican", "votes": 146032, "winner": true },
+        { "name": "Donald Deichman", "party": "Democratic", "votes": 84746, "winner": false }
+      ],
+      "totalVotes": 230778,
+      "margin": 0.266
+    }
+  }
+}
