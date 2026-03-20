@@ -266,38 +266,37 @@
     </div>
   </div>
 
-  <!-- Maps — use a single relative container with absolute children
-       so MapLibre gets real pixel dimensions from the parent's flex-1 height -->
-  <div class="flex-1 relative min-h-0">
+  <!-- Maps — two flex-1 divs in a flex row. Bind MapLibre directly to each
+       div (same pattern as DistrictEditor) so it gets real pixel dimensions. -->
+  <div class="flex-1 flex min-h-0">
     <!-- Current (2022) map — left half -->
     <div
-      class="absolute inset-0 right-1/2"
+      class="flex-1 relative"
       bind:this={leftContainer}
       role="application"
       aria-label="Map of Missouri's current congressional districts enacted in 2022"
-    ></div>
+    >
+      {#if isLoading}
+        <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
+          <div class="text-center">
+            <div class="text-mo-navy font-semibold mb-1">Loading district maps...</div>
+            <div class="text-xs text-gray-500">Comparing 2022 and 2025 boundaries</div>
+          </div>
+        </div>
+      {/if}
+    </div>
 
     <!-- Divider -->
-    <div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-300 z-10"></div>
+    <div class="w-px bg-gray-300 flex-shrink-0"></div>
 
     <!-- HB 1 (2025) map — right half -->
     <div
-      class="absolute inset-0 left-1/2"
+      class="flex-1 relative"
       bind:this={rightContainer}
       role="application"
       aria-label="Map of Missouri's HB 1 congressional districts enacted in 2025"
     ></div>
   </div>
-
-  <!-- Loading overlay -->
-  {#if isLoading}
-    <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
-      <div class="text-center">
-        <div class="text-mo-navy font-semibold mb-1">Loading district maps...</div>
-        <div class="text-xs text-gray-500">Comparing 2022 and 2025 boundaries</div>
-      </div>
-    </div>
-  {/if}
 
   <!-- Shared district color legend -->
   <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm
