@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.16",
-    "mapshaper": "^0.6.113"
+    "mapshaper": "^0.6.113",
+    "xlsx": "^0.18.5"
   }
 }

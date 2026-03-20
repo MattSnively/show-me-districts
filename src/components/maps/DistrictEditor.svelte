@@ -54,6 +54,13 @@
   let tractPopulations: Map<string, number> = new Map();
 
   /**
+   * Tract partisan vote lookup: maps GEOID → { dem, rep } vote counts.
+   * Based on 2020 presidential election results disaggregated to blocks
+   * and aggregated to tracts. Loaded once from the GeoJSON.
+   */
+  let tractVotes: Map<string, { dem: number; rep: number }> = new Map();
+
+  /**
    * Tract adjacency graph: maps each tract GEOID to the set of neighboring
    * tract GEOIDs. Two tracts are neighbors if they share at least one edge
    * (two consecutive shared vertices). Built once when tracts load.
@@ -76,6 +83,40 @@
       pops[dist] += tractPopulations.get(geoid) || 0;
     }
     return pops;
+  });
+
+  /**
+   * Partisan vote totals per district, computed reactively from assignments.
+   * Index 0 = unassigned, indices 1-8 = districts.
+   * Each entry has { dem, rep } vote counts from the 2020 presidential election.
+   */
+  let districtVotes = $derived.by(() => {
+    const votes = Array.from({ length: MO_DISTRICT_COUNT + 1 }, () => ({ dem: 0, rep: 0 }));
+    for (const [geoid, dist] of assignments) {
+      const v = tractVotes.get(geoid);
+      if (v) {
+        votes[dist].dem += v.dem;
+        votes[dist].rep += v.rep;
+      }
+    }
+    return votes;
+  });
+
+  /**
+   * Projected seat counts based on 2020 presidential vote by district.
+   * A district leans D if dem_votes > rep_votes, R otherwise.
+   * Only counts districts that have tracts assigned.
+   */
+  let seatProjection = $derived.by(() => {
+    let dSeats = 0;
+    let rSeats = 0;
+    for (let d = 1; d <= MO_DISTRICT_COUNT; d++) {
+      const v = districtVotes[d];
+      if (v.dem + v.rep === 0) continue; /* No data yet */
+      if (v.dem > v.rep) dSeats++;
+      else rSeats++;
+    }
+    return { dem: dSeats, rep: rSeats };
   });
 
   /** Max population deviation as a percentage */
@@ -219,6 +260,32 @@
   function deviationPct(pop: number): number {
     if (idealPop === 0) return 0;
     return ((pop - idealPop) / idealPop) * 100;
+  }
+
+  /**
+   * Formats a partisan lean as "D+X.X" or "R+X.X" for display.
+   * @param dem - Total Democratic votes in the district
+   * @param rep - Total Republican votes in the district
+   * @returns Formatted lean string, or "—" if no votes
+   */
+  function partisanLean(dem: number, rep: number): string {
+    const total = dem + rep;
+    if (total === 0) return '—';
+    const margin = ((dem - rep) / total) * 100;
+    if (Math.abs(margin) < 0.5) return 'Even';
+    return margin > 0 ? `D+${margin.toFixed(1)}` : `R+${Math.abs(margin).toFixed(1)}`;
+  }
+
+  /**
+   * Returns a CSS text color class for partisan lean display.
+   * Blue for D-leaning, red for R-leaning, purple for competitive.
+   */
+  function leanColor(dem: number, rep: number): string {
+    const total = dem + rep;
+    if (total === 0) return 'text-gray-400';
+    const margin = Math.abs(dem - rep) / total * 100;
+    if (margin < 5) return 'text-purple-600'; /* Competitive */
+    return dem > rep ? 'text-blue-600' : 'text-red-600';
   }
 
   /**
@@ -414,6 +481,11 @@
       const pop = feature.properties.population || 0;
       tractPopulations.set(geoid, pop);
       initialAssignments.set(geoid, 0);
+
+      /* Load 2020 presidential vote data for partisan lean calculation */
+      const demVotes = parseFloat(feature.properties.dem_votes) || 0;
+      const repVotes = parseFloat(feature.properties.rep_votes) || 0;
+      tractVotes.set(geoid, { dem: demVotes, rep: repVotes });
 
       /* MapLibre requires a numeric or string `id` on each feature for feature state */
       feature.id = geoid;
@@ -665,6 +737,7 @@
         {@const pop = districtPops[distNum]}
         {@const dev = deviationPct(pop)}
         {@const devAbs = Math.abs(dev)}
+        {@const votes = districtVotes[distNum]}
         <button
           class="w-full mb-1 px-3 py-2 rounded text-sm text-left transition-colors
                  focus:outline-none focus:ring-2 focus:ring-mo-navy
@@ -689,7 +762,7 @@
             </span>
           </div>
 
-          <!-- Population deviation bar -->
+          <!-- Population deviation bar + partisan lean -->
           {#if pop > 0}
             <div class="mt-1 flex items-center gap-1">
               <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
@@ -704,10 +777,51 @@
               <span class="text-[10px] font-mono {devAbs < 1 ? 'text-green-600' : devAbs < 5 ? 'text-yellow-600' : 'text-red-600'}">
                 {dev > 0 ? '+' : ''}{dev.toFixed(1)}%
               </span>
+              <!-- Partisan lean based on 2020 presidential vote -->
+              <span class="text-[10px] font-mono font-bold {leanColor(votes.dem, votes.rep)} ml-1">
+                {partisanLean(votes.dem, votes.rep)}
+              </span>
             </div>
           {/if}
         </button>
       {/each}
+
+      <!-- Seat projection — the headline metric users care about -->
+      {#if seatProjection.dem + seatProjection.rep > 0}
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <div class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+            Projected Seats (2020 Pres.)
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- R seats bar -->
+            <span class="text-xs font-bold text-red-600">{seatProjection.rep}R</span>
+            <div class="flex-1 h-4 flex rounded overflow-hidden">
+              {#if seatProjection.rep > 0}
+                <div
+                  class="bg-red-500 flex items-center justify-center text-[9px] font-bold text-white"
+                  style="width: {(seatProjection.rep / MO_DISTRICT_COUNT) * 100}%"
+                ></div>
+              {/if}
+              {#if seatProjection.dem > 0}
+                <div
+                  class="bg-blue-500 flex items-center justify-center text-[9px] font-bold text-white"
+                  style="width: {(seatProjection.dem / MO_DISTRICT_COUNT) * 100}%"
+                ></div>
+              {/if}
+              {#if seatProjection.rep + seatProjection.dem < MO_DISTRICT_COUNT}
+                <div
+                  class="bg-gray-200"
+                  style="width: {((MO_DISTRICT_COUNT - seatProjection.rep - seatProjection.dem) / MO_DISTRICT_COUNT) * 100}%"
+                ></div>
+              {/if}
+            </div>
+            <span class="text-xs font-bold text-blue-600">{seatProjection.dem}D</span>
+          </div>
+          <div class="text-[10px] text-gray-400 mt-1 text-center">
+            Current map: 6R – 2D
+          </div>
+        </div>
+      {/if}
 
       <!-- Summary stats -->
       <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500 space-y-1">
