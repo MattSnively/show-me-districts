@@ -13,7 +13,7 @@
     - Import placeholder for user-created maps from the editor
 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import maplibregl from 'maplibre-gl';
   import 'maplibre-gl/dist/maplibre-gl.css';
   import { MO_BOUNDS, MO_CENTER, DISTRICT_COLORS } from '../../lib/map-utils';
@@ -324,20 +324,33 @@
 
   /**
    * Starts comparison mode between the selected plan and another.
+   * Sets comparisonPlanId which triggers the {#if} block to mount the
+   * right map container, then the $effect creates the MapLibre instance.
    * @param planId - The plan to compare against the selected plan
    */
   function startComparison(planId: string) {
     if (planId === selectedPlanId) return;
     comparisonPlanId = planId;
+
+    /* Left map shrinks to 50% width — tell MapLibre to recalculate */
+    tick().then(() => {
+      if (leftMap) leftMap.resize();
+    });
   }
 
-  /** Exits comparison mode, destroys the right map */
+  /** Exits comparison mode, destroys the right map and resizes the left map */
   function exitComparison() {
-    comparisonPlanId = null;
     if (rightMap) {
       rightMap.remove();
       rightMap = null;
     }
+    comparisonPlanId = null;
+
+    /* After the {#if} block unmounts and left map takes full width,
+       tell MapLibre to recalculate its canvas size */
+    tick().then(() => {
+      if (leftMap) leftMap.resize();
+    });
   }
 
   /**
@@ -428,29 +441,40 @@
 
   /**
    * Reacts to comparison plan changes — creates or destroys the right map.
-   * When a comparison plan is selected, initializes the right map with synced viewport.
+   * When a comparison plan is selected, waits for the DOM to update (tick)
+   * so the {#if isComparing} block mounts rightMapContainer, then initializes
+   * the right map with synced viewport.
    */
   $effect(() => {
-    if (isComparing && comparisonPlan && !rightMap && rightMapContainer) {
-      /* Create right map for comparison */
-      rightMap = createMap(rightMapContainer);
+    /* Read reactive deps so Svelte tracks them */
+    const comparing = isComparing;
+    const plan = comparisonPlan;
 
-      /* Sync initial viewport from left map */
-      if (leftMap) {
-        rightMap.setCenter(leftMap.getCenter());
-        rightMap.setZoom(leftMap.getZoom());
-      }
+    if (comparing && plan) {
+      /* Wait for DOM to mount the right map container from {#if} block */
+      tick().then(async () => {
+        if (!rightMapContainer) return;
 
-      rightMap.on('load', async () => {
-        if (!rightMap || !comparisonPlan) return;
-        await renderPlanOnMap(rightMap, comparisonPlan, 'right');
-        setupMapSync();
+        if (!rightMap) {
+          /* Create right map for comparison */
+          rightMap = createMap(rightMapContainer);
+
+          /* Sync initial viewport from left map */
+          if (leftMap) {
+            rightMap.setCenter(leftMap.getCenter());
+            rightMap.setZoom(leftMap.getZoom());
+          }
+
+          rightMap.on('load', async () => {
+            if (!rightMap || !comparisonPlan) return;
+            await renderPlanOnMap(rightMap, comparisonPlan, 'right');
+            setupMapSync();
+          });
+        } else if (rightMap.isStyleLoaded()) {
+          /* Comparison plan changed but right map already exists — re-render */
+          await renderPlanOnMap(rightMap, plan, 'right');
+        }
       });
-    }
-
-    /* If comparison plan changed but right map already exists, re-render */
-    if (isComparing && comparisonPlan && rightMap && rightMap.isStyleLoaded()) {
-      renderPlanOnMap(rightMap, comparisonPlan, 'right');
     }
   });
 </script>
@@ -490,46 +514,86 @@
   <!-- Main content: map(s) + sidebar -->
   <div class="flex-1 flex flex-col md:flex-row min-h-0">
 
-    <!-- Map area — bind MapLibre directly to the flex-1 div (same pattern as
-         DistrictEditor). MapLibre creates its canvas inside this div and sizes
-         itself from the div's dimensions. Overlays sit on top with z-index. -->
-    <div
-      class="flex-1 relative order-1 min-h-[300px]"
-      bind:this={leftMapContainer}
-      role="application"
-      aria-label="Map showing {selectedPlan?.title ?? 'district plan'}"
-    >
-      <!-- Plan label overlay -->
-      {#if selectedPlan}
-        <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
-                    px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
-          {selectedPlan.title}
-        </div>
-      {/if}
+    <!-- Map area — flex row containing one or two maps. Each map is a flex-1
+         div bound directly to MapLibre (same pattern as DistrictEditor and
+         RedistrictingComparison). In comparison mode, both maps share the
+         space equally with a divider between them. -->
+    <div class="flex-1 flex order-1 min-h-[300px]">
 
-      <!-- Loading overlay -->
-      {#if isLoading}
-        <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
-          <div class="text-center">
-            <div class="text-mo-navy font-semibold mb-1">{loadingMessage}</div>
-            <div class="text-xs text-gray-500">Loading district boundaries...</div>
+      <!-- Left / primary map -->
+      <div
+        class="flex-1 relative"
+        bind:this={leftMapContainer}
+        role="application"
+        aria-label="Map showing {selectedPlan?.title ?? 'district plan'}"
+      >
+        <!-- Plan label overlay -->
+        {#if selectedPlan}
+          <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
+                      px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
+            {selectedPlan.title}
+          </div>
+        {/if}
+
+        <!-- Loading overlay -->
+        {#if isLoading}
+          <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
+            <div class="text-center">
+              <div class="text-mo-navy font-semibold mb-1">{loadingMessage}</div>
+              <div class="text-xs text-gray-500">Loading district boundaries...</div>
+            </div>
+          </div>
+        {/if}
+
+        <!-- District color legend (bottom-left of map) -->
+        <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded
+                    px-3 py-2 shadow-sm z-10">
+          <div class="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Districts</div>
+          <div class="flex flex-wrap gap-1.5">
+            {#each DISTRICT_COLORS as color, i}
+              <div class="flex items-center gap-1">
+                <div class="w-3 h-3 rounded-sm" style="background-color: {color};"></div>
+                <span class="text-[10px] text-gray-600">{i + 1}</span>
+              </div>
+            {/each}
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider + right comparison map (only in comparison mode) -->
+      {#if isComparing}
+        <div class="w-px bg-gray-300 flex-shrink-0"></div>
+
+        <!-- Right / comparison map -->
+        <div
+          class="flex-1 relative"
+          bind:this={rightMapContainer}
+          role="application"
+          aria-label="Comparison map showing {comparisonPlan?.title ?? 'comparison plan'}"
+        >
+          <!-- Comparison plan label overlay -->
+          {#if comparisonPlan}
+            <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
+                        px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
+              {comparisonPlan.title}
+            </div>
+          {/if}
+
+          <!-- District color legend (bottom-left of right map) -->
+          <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded
+                      px-3 py-2 shadow-sm z-10">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Districts</div>
+            <div class="flex flex-wrap gap-1.5">
+              {#each DISTRICT_COLORS as color, i}
+                <div class="flex items-center gap-1">
+                  <div class="w-3 h-3 rounded-sm" style="background-color: {color};"></div>
+                  <span class="text-[10px] text-gray-600">{i + 1}</span>
+                </div>
+              {/each}
+            </div>
           </div>
         </div>
       {/if}
-
-      <!-- District color legend (bottom-left of map) -->
-      <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded
-                  px-3 py-2 shadow-sm z-10">
-        <div class="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Districts</div>
-        <div class="flex flex-wrap gap-1.5">
-          {#each DISTRICT_COLORS as color, i}
-            <div class="flex items-center gap-1">
-              <div class="w-3 h-3 rounded-sm" style="background-color: {color};"></div>
-              <span class="text-[10px] text-gray-600">{i + 1}</span>
-            </div>
-          {/each}
-        </div>
-      </div>
     </div>
 
     <!-- Sidebar: plan browser + metrics -->
