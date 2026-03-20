@@ -22,6 +22,9 @@
   /** Currently selected district slot (1-8, 0 = eraser/unassign) */
   let activeDistrict = $state(1);
 
+  /** Whether fill mode is active (paint bucket tool) */
+  let isFillMode = $state(false);
+
   /** Whether the user is actively painting (mouse held down) */
   let isPainting = $state(false);
 
@@ -49,6 +52,13 @@
    * Loaded once from the GeoJSON and never changes.
    */
   let tractPopulations: Map<string, number> = new Map();
+
+  /**
+   * Tract adjacency graph: maps each tract GEOID to the set of neighboring
+   * tract GEOIDs. Two tracts are neighbors if they share at least one edge
+   * (two consecutive shared vertices). Built once when tracts load.
+   */
+  let tractAdjacency: Map<string, Set<string>> = new Map();
 
   /** Total state population (from GeoJSON metadata) */
   let totalPopulation = $state(0);
@@ -212,6 +222,124 @@
   }
 
   /**
+   * Builds the tract adjacency graph from GeoJSON geometry. Two tracts are
+   * considered neighbors if they share at least one edge (two consecutive
+   * vertices in common). We index every edge by a canonical key (sorted
+   * endpoints rounded to 6 decimal places), then link tracts that share edges.
+   *
+   * This runs once at load time. With ~1,654 tracts it completes in <500ms.
+   * @param geojson - The tract FeatureCollection
+   */
+  function buildAdjacency(geojson: any) {
+    const adj = new Map<string, Set<string>>();
+
+    /* Index every polygon edge → which tracts use it.
+     * An "edge" is a pair of consecutive vertices, keyed as
+     * "lng,lat→lng,lat" with the smaller point first for consistency. */
+    const edgeIndex = new Map<string, string[]>();
+
+    for (const feature of geojson.features) {
+      const geoid = feature.properties.geoid;
+      adj.set(geoid, new Set());
+
+      /* Extract coordinate rings — handle both Polygon and MultiPolygon */
+      const rings: number[][][] =
+        feature.geometry.type === 'MultiPolygon'
+          ? feature.geometry.coordinates.flat()
+          : feature.geometry.coordinates;
+
+      for (const ring of rings) {
+        for (let i = 0; i < ring.length - 1; i++) {
+          /* Round to 6 decimal places (~0.1m precision) to match vertices
+           * that may differ by floating-point rounding */
+          const p1 = ring[i][0].toFixed(6) + ',' + ring[i][1].toFixed(6);
+          const p2 = ring[i + 1][0].toFixed(6) + ',' + ring[i + 1][1].toFixed(6);
+
+          /* Canonical edge key: sort endpoints so A→B and B→A produce the same key */
+          const edgeKey = p1 < p2 ? p1 + '|' + p2 : p2 + '|' + p1;
+
+          if (!edgeIndex.has(edgeKey)) edgeIndex.set(edgeKey, []);
+          edgeIndex.get(edgeKey)!.push(geoid);
+        }
+      }
+    }
+
+    /* Two tracts sharing an edge are neighbors */
+    for (const geoids of edgeIndex.values()) {
+      for (let i = 0; i < geoids.length; i++) {
+        for (let j = i + 1; j < geoids.length; j++) {
+          adj.get(geoids[i])!.add(geoids[j]);
+          adj.get(geoids[j])!.add(geoids[i]);
+        }
+      }
+    }
+
+    tractAdjacency = adj;
+  }
+
+  /**
+   * Flood fill from a starting tract. BFS through all connected tracts that
+   * share the same district assignment as the start tract, then assigns them
+   * all to the active district. Works like MS Paint's bucket fill:
+   *
+   *   - Click an unassigned (gray) tract → fills the connected unassigned region
+   *   - Click a District 3 tract while District 5 is active → reassigns the
+   *     connected District 3 region to District 5
+   *
+   * The entire fill is recorded as a single undo entry.
+   * @param startGeoid - The GEOID of the tract the user clicked
+   */
+  function floodFill(startGeoid: string) {
+    const targetDistrict = assignments.get(startGeoid) ?? 0;
+
+    /* No-op if the tract is already the active district */
+    if (targetDistrict === activeDistrict) return;
+
+    /* BFS: find all connected tracts with the same district as the start */
+    const visited = new Set<string>();
+    const queue = [startGeoid];
+    const toFill: string[] = [];
+
+    while (queue.length > 0) {
+      const geoid = queue.shift()!;
+      if (visited.has(geoid)) continue;
+      visited.add(geoid);
+
+      const d = assignments.get(geoid) ?? 0;
+      /* Only spread through tracts that match the clicked tract's district */
+      if (d !== targetDistrict) continue;
+
+      toFill.push(geoid);
+
+      /* Enqueue unvisited neighbors */
+      const neighbors = tractAdjacency.get(geoid);
+      if (neighbors) {
+        for (const neighbor of neighbors) {
+          if (!visited.has(neighbor)) queue.push(neighbor);
+        }
+      }
+    }
+
+    if (toFill.length === 0) return;
+
+    /* Apply fill and record as a single undo entry */
+    currentStroke = [];
+    const updated = new Map(assignments);
+
+    for (const geoid of toFill) {
+      const oldDistrict = updated.get(geoid) ?? 0;
+      currentStroke.push({ geoid, oldDistrict, newDistrict: activeDistrict });
+      updated.set(geoid, activeDistrict);
+      updateTractColor(geoid, activeDistrict);
+    }
+
+    assignments = updated;
+    commitStroke();
+
+    statusMessage = `Filled ${toFill.length} tracts into District ${activeDistrict}`;
+  }
+
+  /**
    * Initializes the MapLibre map, loads tract GeoJSON, and sets up
    * painting interactions (click, drag, hover).
    */
@@ -292,6 +420,10 @@
     }
 
     assignments = initialAssignments;
+
+    /* Build adjacency graph for flood fill (which tracts share edges) */
+    statusMessage = 'Building adjacency graph...';
+    buildAdjacency(geojson);
 
     /* Add tract source */
     map.addSource('tracts', {
@@ -390,10 +522,10 @@
   function setupPaintHandlers() {
     if (!map) return;
 
-    /* Hover: highlight tract under cursor and show pointer */
+    /* Hover: highlight tract under cursor and show appropriate cursor */
     map.on('mousemove', 'tracts-fill', (e) => {
       if (!map || !e.features || e.features.length === 0) return;
-      map.getCanvas().style.cursor = 'crosshair';
+      map.getCanvas().style.cursor = isFillMode ? 'cell' : 'crosshair';
       const geoid = e.features[0].properties?.geoid;
       if (geoid) {
         map.setFilter('tracts-hover', ['==', 'geoid', geoid]);
@@ -411,20 +543,27 @@
       map.setFilter('tracts-hover', ['==', 'geoid', '']);
     });
 
-    /* Click: paint single tract */
+    /* Click: paint single tract, or flood fill if fill mode is active */
     map.on('click', 'tracts-fill', (e) => {
       if (!e.features || e.features.length === 0) return;
       const geoid = e.features[0].properties?.geoid;
-      if (geoid) {
+      if (!geoid) return;
+
+      if (isFillMode) {
+        /* Flood fill: BFS from clicked tract through same-colored neighbors */
+        floodFill(geoid);
+      } else {
+        /* Normal paint: assign single tract */
         paintTract(geoid);
         commitStroke();
       }
     });
 
-    /* Drag painting: mousedown starts, mouseup commits */
+    /* Drag painting: mousedown starts, mouseup commits.
+     * Drag-paint is disabled in fill mode — fill only triggers on click. */
     map.on('mousedown', 'tracts-fill', (e) => {
-      /* Only start drag-paint on left mouse button */
-      if (e.originalEvent.button !== 0) return;
+      /* Only start drag-paint on left mouse button, and not in fill mode */
+      if (e.originalEvent.button !== 0 || isFillMode) return;
 
       isPainting = true;
       currentStroke = [];
@@ -478,6 +617,34 @@
       <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wide mb-3">
         Districts
       </h3>
+
+      <!-- Tool mode buttons -->
+      <div class="flex gap-2 mb-3">
+        <!-- Paint mode (default brush) -->
+        <button
+          class="flex-1 px-3 py-2 rounded text-xs font-medium text-center transition-colors
+                 focus:outline-none focus:ring-2 focus:ring-mo-navy
+                 {!isFillMode ? 'bg-mo-navy text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}"
+          onclick={() => isFillMode = false}
+          aria-label="Brush tool — paint individual tracts"
+          aria-pressed={!isFillMode}
+          title="Paint individual tracts (click or drag)"
+        >
+          &#9998; Brush
+        </button>
+        <!-- Fill mode (paint bucket) -->
+        <button
+          class="flex-1 px-3 py-2 rounded text-xs font-medium text-center transition-colors
+                 focus:outline-none focus:ring-2 focus:ring-mo-navy
+                 {isFillMode ? 'bg-mo-navy text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}"
+          onclick={() => isFillMode = true}
+          aria-label="Fill tool — flood fill connected tracts of the same color"
+          aria-pressed={isFillMode}
+          title="Fill connected region (like paint bucket)"
+        >
+          &#9724; Fill
+        </button>
+      </div>
 
       <!-- Eraser tool -->
       <button
@@ -651,7 +818,7 @@
         <span>Current districts</span>
       </div>
       <div class="text-[10px] text-gray-400">
-        {isPainting ? 'Painting...' : 'Click or tap tracts to paint'}
+        {isPainting ? 'Painting...' : isFillMode ? 'Click a region to fill' : 'Click or drag tracts to paint'}
       </div>
     </div>
   </div>
