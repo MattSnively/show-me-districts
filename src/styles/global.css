@@ -46,12 +46,13 @@ body {
 }
 
 /*
- * Astro island wrapper fix — <astro-island> is an inline custom element
- * with no height by default, which breaks h-full inheritance for child
- * components. Force it to fill its parent when the parent has explicit height.
+ * Astro island wrapper fix — Astro sets `display: contents` on <astro-island>,
+ * which removes it from the layout tree and breaks height inheritance for
+ * MapLibre map containers that need real pixel dimensions from their parent.
+ * Override with !important to beat Astro's injected <style> tag.
  */
 astro-island {
-  display: block;
+  display: block !important;
   width: 100%;
   height: 100%;
 }
