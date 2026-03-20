@@ -266,30 +266,27 @@
     </div>
   </div>
 
-  <!-- Maps -->
-  <div class="flex-1 flex min-h-0">
-    <!-- Current (2022) map -->
-    <div class="flex-1 relative">
-      <div
-        class="absolute inset-0"
-        bind:this={leftContainer}
-        role="application"
-        aria-label="Map of Missouri's current congressional districts enacted in 2022"
-      ></div>
-    </div>
+  <!-- Maps — use a single relative container with absolute children
+       so MapLibre gets real pixel dimensions from the parent's flex-1 height -->
+  <div class="flex-1 relative min-h-0">
+    <!-- Current (2022) map — left half -->
+    <div
+      class="absolute inset-0 right-1/2"
+      bind:this={leftContainer}
+      role="application"
+      aria-label="Map of Missouri's current congressional districts enacted in 2022"
+    ></div>
 
     <!-- Divider -->
-    <div class="w-px bg-gray-300 flex-shrink-0"></div>
+    <div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-300 z-10"></div>
 
-    <!-- HB 1 (2025) map -->
-    <div class="flex-1 relative">
-      <div
-        class="absolute inset-0"
-        bind:this={rightContainer}
-        role="application"
-        aria-label="Map of Missouri's HB 1 congressional districts enacted in 2025"
-      ></div>
-    </div>
+    <!-- HB 1 (2025) map — right half -->
+    <div
+      class="absolute inset-0 left-1/2"
+      bind:this={rightContainer}
+      role="application"
+      aria-label="Map of Missouri's HB 1 congressional districts enacted in 2025"
+    ></div>
   </div>
 
   <!-- Loading overlay -->

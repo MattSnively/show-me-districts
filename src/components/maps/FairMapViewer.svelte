@@ -490,54 +490,55 @@
   <!-- Main content: map(s) + sidebar -->
   <div class="flex-1 flex flex-col md:flex-row min-h-0">
 
-    <!-- Map area -->
-    <div class="flex-1 flex min-h-[300px] relative order-1">
-      <!-- Left / primary map -->
-      <div class="{isComparing ? 'w-1/2 border-r border-gray-300' : 'w-full'} relative h-full">
-        <div
-          class="absolute inset-0"
-          bind:this={leftMapContainer}
-          role="application"
-          aria-label="Map showing {selectedPlan?.title ?? 'district plan'}"
-        ></div>
+    <!-- Map area — bind MapLibre directly to the flex children so they get
+         real pixel dimensions from the flex layout (no extra absolute wrapper) -->
+    <div class="flex-1 relative order-1 min-h-[300px]">
+      <!-- Left / primary map — fills the whole area (or half in compare mode) -->
+      <div
+        class="absolute inset-0 {isComparing ? 'right-1/2' : ''}"
+        bind:this={leftMapContainer}
+        role="application"
+        aria-label="Map showing {selectedPlan?.title ?? 'district plan'}"
+      ></div>
 
-        <!-- Plan label overlay -->
-        {#if selectedPlan}
-          <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
-                      px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
-            {selectedPlan.title}
-          </div>
-        {/if}
+      <!-- Plan label overlay -->
+      {#if selectedPlan}
+        <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
+                    px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
+          {selectedPlan.title}
+        </div>
+      {/if}
 
-        <!-- Loading overlay -->
-        {#if isLoading}
-          <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
-            <div class="text-center">
-              <div class="text-mo-navy font-semibold mb-1">{loadingMessage}</div>
-              <div class="text-xs text-gray-500">Loading district boundaries...</div>
-            </div>
+      <!-- Loading overlay -->
+      {#if isLoading}
+        <div class="absolute inset-0 bg-white/70 flex items-center justify-center z-20">
+          <div class="text-center">
+            <div class="text-mo-navy font-semibold mb-1">{loadingMessage}</div>
+            <div class="text-xs text-gray-500">Loading district boundaries...</div>
           </div>
-        {/if}
-      </div>
+        </div>
+      {/if}
 
       <!-- Right / comparison map (only visible in compare mode) -->
       {#if isComparing}
-        <div class="w-1/2 relative h-full">
-          <div
-            class="absolute inset-0"
-            bind:this={rightMapContainer}
-            role="application"
-            aria-label="Comparison map showing {comparisonPlan?.title ?? 'comparison plan'}"
-          ></div>
+        <div
+          class="absolute inset-0 left-1/2"
+          bind:this={rightMapContainer}
+          role="application"
+          aria-label="Comparison map showing {comparisonPlan?.title ?? 'comparison plan'}"
+        ></div>
 
-          <!-- Comparison plan label -->
-          {#if comparisonPlan}
-            <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded
-                        px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10">
-              {comparisonPlan.title}
-            </div>
-          {/if}
-        </div>
+        <!-- Comparison plan label -->
+        {#if comparisonPlan}
+          <div class="absolute top-2 bg-white/90 backdrop-blur-sm rounded
+                      px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-sm z-10"
+               style="left: calc(50% + 0.5rem);">
+            {comparisonPlan.title}
+          </div>
+        {/if}
+
+        <!-- Divider line -->
+        <div class="absolute top-0 bottom-0 left-1/2 w-px bg-gray-300 z-10"></div>
       {/if}
 
       <!-- District color legend (bottom-left of map) -->
