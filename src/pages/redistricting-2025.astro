@@ -46,7 +46,7 @@ import RedistrictingComparison from '../components/maps/RedistrictingComparison.
       </p>
       <p class="text-sm text-mo-neutral-700 leading-relaxed mt-2">
         Separately, voters will decide the map's permanent fate on
-        <strong>Proposition A</strong> this November. <a href="#where-it-stands" class="text-mo-navy underline hover:text-mo-navy-light">Full details below.</a>
+        <strong>Proposition A</strong> this November. <a href="#where-it-stands" class="text-mo-navy underline hover:text-mo-navy-light">Full details below</a>, or <a href="#your-vote" class="text-mo-navy underline hover:text-mo-navy-light">see what a Yes or No vote means</a>.
       </p>
     </div>
   </section>
@@ -150,7 +150,7 @@ import RedistrictingComparison from '../components/maps/RedistrictingComparison.
   </section>
 
   <!-- Side-by-side map comparison -->
-  <section class="container-site py-8">
+  <section id="compare-maps" class="container-site py-8">
     <h2 class="font-headline text-2xl font-bold text-mo-neutral-800 mb-2">The Maps: Before and After</h2>
     <p class="text-sm text-mo-neutral-600 mb-4 max-w-3xl">
       Pan and zoom either map — both stay in sync. Click a district for population
@@ -515,6 +515,7 @@ import RedistrictingComparison from '../components/maps/RedistrictingComparison.
           approves the 2025 map for future elections. A <em>No</em> vote rejects it and keeps
           the 2022 map. The underlying federal lawsuit can technically continue, but the Court
           has barred lower courts from ordering the 2025 map for this fall.
+          <a href="#your-vote" class="text-mo-navy underline hover:text-mo-navy-light">What your vote means →</a>
         </p>
       </div>
 
@@ -541,6 +542,78 @@ import RedistrictingComparison from '../components/maps/RedistrictingComparison.
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!--
+    Voter guide for Proposition A. Deliberately symmetric: both options get identical
+    styling, structure, and neutral (non-partisan) colors, and no recommendation is made.
+  -->
+  <section id="your-vote" class="container-site py-8" aria-labelledby="your-vote-heading">
+    <h2 id="your-vote-heading" class="font-headline text-2xl font-bold text-mo-neutral-800 mb-2">
+      Proposition A: What Your Vote Means
+    </h2>
+    <p class="text-sm text-mo-neutral-600 mb-4 max-w-3xl leading-relaxed">
+      On <strong>November 3, 2026</strong>, Missouri voters decide which congressional map
+      will be used starting with the <strong>2028 elections</strong>. The 2026 election uses
+      the 2022 map no matter how Proposition A turns out. This guide explains what each
+      choice does. Show-Me Districts does not recommend a vote.
+    </p>
+
+    <!-- Ballot wording, quoted so voters recognize it in the booth -->
+    <blockquote class="max-w-3xl mb-6 p-4 rounded-lg bg-mo-neutral-100 border-l-4 border-mo-navy text-sm text-mo-neutral-700 italic leading-relaxed">
+      "Do the people of the state of Missouri approve the act of the General Assembly entitled
+      'House Bill No. 1 (2025 Second Extraordinary Session),' which repeals Missouri's existing
+      congressional plan, and replaces it with new congressional boundaries that keep more
+      counties intact?"
+      <footer class="not-italic text-xs text-mo-neutral-500 mt-2">— Proposition A ballot question</footer>
+    </blockquote>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
+      <div class="rounded-lg border-2 border-mo-neutral-300 overflow-hidden">
+        <div class="bg-mo-neutral-200 px-5 py-3">
+          <h3 class="font-bold text-mo-neutral-800">A YES vote</h3>
+          <p class="text-xs text-mo-neutral-600">Approves the 2025 map (HB 1)</p>
+        </div>
+        <ul class="p-5 space-y-3 text-sm text-mo-neutral-600 leading-relaxed list-disc pl-9">
+          <li>The 2025 map takes effect and is used for the <strong>2028</strong> and <strong>2030</strong> congressional elections.</li>
+          <li>Kansas City is split among three districts (CD-4, CD-5, and CD-6). CD-5 extends east through rural counties to Osage County.</li>
+          <li>Based on past voting patterns, analysts project a <strong>7 Republican – 1 Democratic</strong> delegation.</li>
+          <li>The map's supporters say it keeps more counties intact and is more compact.</li>
+        </ul>
+      </div>
+
+      <div class="rounded-lg border-2 border-mo-neutral-300 overflow-hidden">
+        <div class="bg-mo-neutral-200 px-5 py-3">
+          <h3 class="font-bold text-mo-neutral-800">A NO vote</h3>
+          <p class="text-xs text-mo-neutral-600">Rejects the 2025 map (HB 1)</p>
+        </div>
+        <ul class="p-5 space-y-3 text-sm text-mo-neutral-600 leading-relaxed list-disc pl-9">
+          <li>The 2025 map is repealed. The <strong>2022 map</strong>, drawn after the 2020 census, stays in place for 2028 and beyond.</li>
+          <li>Kansas City stays largely within CD-5.</li>
+          <li>Based on past voting patterns, analysts project a <strong>6 Republican – 2 Democratic</strong> delegation, the same as today.</li>
+          <li>The legislature could still pass a different map later. The Missouri Supreme Court has ruled that mid-decade redistricting is allowed, and voters could again challenge any new map by referendum.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-3xl mt-6 space-y-2 text-sm text-mo-neutral-600 leading-relaxed">
+      <p>
+        <strong>Either way:</strong> Proposition A passes or fails by a simple majority of votes
+        cast statewide. Missouri will redraw its districts again after the 2030 census,
+        in time for the 2032 elections.
+      </p>
+      <p>
+        <strong>See the difference yourself:</strong> Use the
+        <a href="#compare-maps" class="text-mo-navy underline hover:text-mo-navy-light">side-by-side map comparison</a>
+        above: zoom to your area to see which district you would be in under each map.
+      </p>
+      <p>
+        <strong>Before you vote:</strong> Check your registration, polling place, and sample
+        ballot at the
+        <a href="https://www.sos.mo.gov/elections/goVoteMissouri" class="text-mo-navy underline hover:text-mo-navy-light">Missouri Secretary of State's GoVoteMissouri</a>
+        site.
+      </p>
     </div>
   </section>
 
