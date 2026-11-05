@@ -70,6 +70,12 @@
   /** Total state population (from GeoJSON metadata) */
   let totalPopulation = $state(0);
 
+  /**
+   * Population of each district in the enacted 2022 map, by district number (index 1-8).
+   * Shown beside the user's own count so people can see how large a district really is.
+   */
+  let currentCdPops = $state<number[]>([]);
+
   /** Ideal population per district */
   let idealPop = $derived(Math.round(totalPopulation / MO_DISTRICT_COUNT));
 
@@ -563,6 +569,12 @@
       const cdResponse = await fetch('/data/census/mo-cd-current.geojson');
       if (cdResponse.ok) {
         const cdGeojson = await cdResponse.json();
+        const pops: number[] = [];
+        for (const f of cdGeojson.features) {
+          /* GEOID is state FIPS + district, e.g. "2903" for CD-3 */
+          pops[parseInt(String(f.properties.GEOID).slice(2), 10)] = f.properties.population || 0;
+        }
+        currentCdPops = pops;
         map.addSource('current-cd', { type: 'geojson', data: cdGeojson });
         map.addLayer({
           id: 'current-cd-line',
@@ -738,11 +750,13 @@
         {@const dev = deviationPct(pop)}
         {@const devAbs = Math.abs(dev)}
         {@const votes = districtVotes[distNum]}
+        {@const barMax = idealPop * 1.25}
+        {@const cur = currentCdPops[distNum] ?? 0}
         <button
           class="w-full mb-1 px-3 py-2 rounded text-sm text-left transition-colors
                  focus:outline-none focus:ring-2 focus:ring-mo-navy
                  {activeDistrict === distNum ? 'ring-2 ring-offset-1 font-semibold' : 'hover:bg-gray-50'}"
-          aria-label="District {distNum}: {pop > 0 ? pop.toLocaleString() + ' people, ' + dev.toFixed(1) + '% deviation' : 'no tracts assigned'}"
+          aria-label="District {distNum}: {pop > 0 ? pop.toLocaleString() + ' people, ' + dev.toFixed(1) + '% deviation' : 'no tracts assigned'}{currentCdPops[distNum] ? '. Enacted 2022 district ' + distNum + ' has ' + currentCdPops[distNum].toLocaleString() + ' people' : ''}"
           aria-pressed={activeDistrict === distNum}
           style="
             {activeDistrict === distNum ? `ring-color: ${DISTRICT_COLORS[i]}; background-color: ${DISTRICT_COLORS[i]}15;` : ''}
@@ -762,18 +776,26 @@
             </span>
           </div>
 
-          <!-- Population deviation bar + partisan lean -->
-          {#if pop > 0}
-            <div class="mt-1 flex items-center gap-1">
-              <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  class="h-full rounded-full transition-all"
-                  style="
-                    width: {Math.min(100, (pop / idealPop) * 100)}%;
-                    background-color: {devAbs < 1 ? '#22C55E' : devAbs < 5 ? '#F59E0B' : '#EF4444'};
-                  "
-                ></div>
-              </div>
+          <!-- Population bar on a 0-125% of ideal scale. Ticks mark the ideal (dark) and the
+               enacted 2022 district of the same number (navy), so the target size is visible
+               before any tracts are painted. -->
+          <div class="mt-1 flex items-center gap-1">
+            <div class="relative flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+              <div
+                class="h-full rounded-full transition-all"
+                style="
+                  width: {barMax > 0 ? Math.min(100, (pop / barMax) * 100) : 0}%;
+                  background-color: {devAbs < 1 ? '#22C55E' : devAbs < 5 ? '#F59E0B' : '#EF4444'};
+                "
+              ></div>
+              {#if barMax > 0}
+                <div class="absolute top-0 h-full w-px bg-gray-800" style="left: {(idealPop / barMax) * 100}%"></div>
+                {#if cur > 0}
+                  <div class="absolute top-0 h-full w-0.5 bg-mo-navy" style="left: {(cur / barMax) * 100}%"></div>
+                {/if}
+              {/if}
+            </div>
+            {#if pop > 0}
               <span class="text-[10px] font-mono {devAbs < 1 ? 'text-green-600' : devAbs < 5 ? 'text-yellow-600' : 'text-red-600'}">
                 {dev > 0 ? '+' : ''}{dev.toFixed(1)}%
               </span>
@@ -781,6 +803,14 @@
               <span class="text-[10px] font-mono font-bold {leanColor(votes.dem, votes.rep)} ml-1">
                 {partisanLean(votes.dem, votes.rep)}
               </span>
+            {/if}
+          </div>
+          {#if cur > 0}
+            <div class="mt-0.5 text-[10px] text-gray-500 font-mono">
+              2022 map CD-{distNum}: {cur.toLocaleString()}
+              {#if pop > 0}
+                ({pop - cur > 0 ? '+' : ''}{(pop - cur).toLocaleString()})
+              {/if}
             </div>
           {/if}
         </button>

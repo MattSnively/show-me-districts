@@ -42,3 +42,6 @@ data/historical/congress-*.geojson
 
 # Public data directory (copied from data/ by prepare-public-data script)
 public/data/
+
+# Raw Census PL 94-171 download (~430 MB); regenerate with scripts/join-pl94171-to-tracts.py
+data/pl94171/
