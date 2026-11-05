@@ -20,19 +20,20 @@ interface Props {
 
 const { label, value, description, status } = Astro.props;
 
-/** Map status to border accent color */
-const statusColors = {
-  good: 'border-l-green-500',
-  warning: 'border-l-yellow-500',
-  bad: 'border-l-red-500',
+/** Status is shown as a dot plus screen-reader text, not a colored card edge */
+const statusDot = {
+  good: 'bg-green-500',
+  warning: 'bg-yellow-500',
+  bad: 'bg-red-500',
 };
-
-const borderClass = status ? statusColors[status] : 'border-l-mo-neutral-200';
+const statusLabel = { good: 'Good', warning: 'Warning', bad: 'Concerning' };
 ---
 
-<div class={`p-4 bg-white rounded-lg border border-mo-neutral-200 border-l-4 ${borderClass}`}>
-  <div class="text-xs font-semibold uppercase tracking-wide text-mo-neutral-600 mb-1">
+<div class="p-4 bg-white rounded-lg border border-mo-neutral-200">
+  <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-mo-neutral-600 mb-1">
+    {status && <span class={`inline-block w-2 h-2 rounded-full ${statusDot[status]}`} aria-hidden="true" />}
     {label}
+    {status && <span class="sr-only">({statusLabel[status]})</span>}
   </div>
   <div class="text-2xl font-bold text-mo-neutral-800 mb-1">
     {value}
