@@ -11,6 +11,7 @@
  *   data/elections/*.json                → public/data/elections/
  *   data/census/mo-tracts-2020.geojson   → public/data/census/
  *   data/census/mo-cd-current.geojson    → public/data/census/
+ *   data/fair-maps/presets/              → public/data/fair-maps/presets/
  *   data/fair-maps/ensemble-metadata.json → public/data/fair-maps/
  */
 
@@ -23,6 +24,7 @@ const copies = [
   { src: 'data/census/mo-tracts-2020.geojson', dest: 'public/data/census/mo-tracts-2020.geojson' },
   { src: 'data/census/mo-cd-current.geojson', dest: 'public/data/census/mo-cd-current.geojson' },
   { src: 'data/census/mo-cd-hb1-2025.geojson', dest: 'public/data/census/mo-cd-hb1-2025.geojson' },
+  { src: 'data/fair-maps/presets', dest: 'public/data/fair-maps/presets' },
   { src: 'data/fair-maps/ensemble-metadata.json', dest: 'public/data/fair-maps/ensemble-metadata.json' },
 ];
 

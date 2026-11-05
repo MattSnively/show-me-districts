@@ -16,6 +16,95 @@
     },
     "note": "Baseline for comparison. Metrics to be computed after data pipeline is complete."
   },
-  "plans": [],
+  "plans": [
+    {
+      "id": "splitline",
+      "title": "Straight-Line Split",
+      "source": "Show-Me Districts (algorithmic)",
+      "year": 2026,
+      "districts": 8,
+      "geoFile": "presets/splitline.geojson",
+      "assignmentsFile": "presets/splitline-assignments.json",
+      "metrics": {
+        "polsbyPopper": 0.148,
+        "reock": 0.138,
+        "populationDeviation": 0.00429,
+        "efficiencyGap": null,
+        "meanMedian": null
+      },
+      "countySplits": 49,
+      "seats2020": {
+        "rep": 5,
+        "dem": 3
+      },
+      "note": "Each cut is the shortest straight line that divides the population in the right proportion, repeated until there are eight districts. It ignores counties and communities. Result: largest district is 0.43% from ideal, 49 county splits. For reference only, the 2020 presidential vote would have produced 5R-3D; partisan data was not used to draw the plan."
+    },
+    {
+      "id": "compact",
+      "title": "Most Compact",
+      "source": "Show-Me Districts (algorithmic)",
+      "year": 2026,
+      "districts": 8,
+      "geoFile": "presets/compact.geojson",
+      "assignmentsFile": "presets/compact-assignments.json",
+      "metrics": {
+        "polsbyPopper": 0.329,
+        "reock": 0.337,
+        "populationDeviation": 0.00508,
+        "efficiencyGap": null,
+        "meanMedian": null
+      },
+      "countySplits": 20,
+      "seats2020": {
+        "rep": 6,
+        "dem": 2
+      },
+      "note": "Starts from population-balanced round clusters, then minimizes total district boundary length while keeping every district within 1% of ideal population. Result: largest district is 0.51% from ideal, 20 county splits. For reference only, the 2020 presidential vote would have produced 6R-2D; partisan data was not used to draw the plan."
+    },
+    {
+      "id": "equal-pop",
+      "title": "Equal Population",
+      "source": "Show-Me Districts (algorithmic)",
+      "year": 2026,
+      "districts": 8,
+      "geoFile": "presets/equal-pop.geojson",
+      "assignmentsFile": "presets/equal-pop-assignments.json",
+      "metrics": {
+        "polsbyPopper": 0.282,
+        "reock": 0.31,
+        "populationDeviation": 0.00142,
+        "efficiencyGap": null,
+        "meanMedian": null
+      },
+      "countySplits": 22,
+      "seats2020": {
+        "rep": 6,
+        "dem": 2
+      },
+      "note": "Starts from the Most Compact plan, then moves tracts to bring district populations as close to equal as possible, keeping shapes tidy. Result: largest district is 0.14% from ideal, 22 county splits. For reference only, the 2020 presidential vote would have produced 6R-2D; partisan data was not used to draw the plan."
+    },
+    {
+      "id": "counties",
+      "title": "Keep Counties Whole",
+      "source": "Show-Me Districts (algorithmic)",
+      "year": 2026,
+      "districts": 8,
+      "geoFile": "presets/counties.geojson",
+      "assignmentsFile": "presets/counties-assignments.json",
+      "metrics": {
+        "polsbyPopper": 0.128,
+        "reock": 0.254,
+        "populationDeviation": 0.00382,
+        "efficiencyGap": null,
+        "meanMedian": null
+      },
+      "countySplits": 14,
+      "seats2020": {
+        "rep": 6,
+        "dem": 2
+      },
+      "note": "Minimizes the number of split counties (and then boundary length) while keeping every district within 1% of ideal population. Result: largest district is 0.38% from ideal, 14 county splits. For reference only, the 2020 presidential vote would have produced 6R-2D; partisan data was not used to draw the plan."
+    }
+  ],
   "note": "Community-created plans will be added here as they are sourced from Dave's Redistricting App and other tools. Each plan will include a GeoJSON file path and pre-computed metric scores."
 }
